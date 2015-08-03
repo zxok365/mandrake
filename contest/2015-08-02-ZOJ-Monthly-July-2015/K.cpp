@@ -115,8 +115,8 @@ void solve(void) {
 		int pos = sa[i];
 
 		if (last < height[i]) {
-			for (int j = last + 1; j <= height[i]; ++j) {
-//printf("%d\n", get(pos, pos + j - 1));
+			for (int j = last + 1; j <= height[i]; ++j) {  
+//printf("%d\n", get(pos, pos + j - 1));   
 				sum[get(pos, pos + j - 1)]++;
 			}
 		} else {
