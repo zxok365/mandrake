@@ -1,4 +1,3 @@
-// orz LZJ orz LZJ orz LZJ orz LZJ orz LZJ orz LZJ orz LZJ orz LZJ orz LZJ orz LZJ 
 #include<cstdio>
 #include<cmath>
 #include<algorithm>
