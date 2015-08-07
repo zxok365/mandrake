@@ -7,7 +7,7 @@ public:
 	int counter;
 
 	Node() {
-		fill(child, child + N, NULL);
+		std::fill(child, child + N, NULL);
 		fail = NULL;
 		counter = 0;
 	}
@@ -26,7 +26,7 @@ void insert(Node *x, char *str) {
 }
 
 void build() {
-	vector<Node*> queue;
+	std::vector<Node*> queue;
 	queue.push_back(root->fail = root);
 	for (int head = 0; head < (int)queue.size(); ++head) {
 		Node* x = queue[head];

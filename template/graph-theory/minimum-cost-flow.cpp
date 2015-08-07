@@ -1,5 +1,3 @@
-const N = , M = ;
-
 struct EdgeList {
 	int size;
 	int last[N];
@@ -7,7 +5,7 @@ struct EdgeList {
 	
 	void clear(int n) {
 		size = 1;
-		fill(last + 1, last + n + 1, 0);
+		std::fill(last + 1, last + n + 1, 0);
 	}
 	
 	void add(int x, int y, int c, int w) {
@@ -31,9 +29,9 @@ void add(int x, int y, int c, int w) {
 bool spfa() {
 	static int dist[N];
 	static bool exist[N];
-	vector<int> queue;
-	fill(dist + 1, dist + n + 1, INT_MAX);
-	fill(exist + 1, exist + n + 1, 0);
+	std::vector<int> queue;
+	std::fill(dist + 1, dist + n + 1, INT_MAX);
+	std::fill(exist + 1, exist + n + 1, 0);
 	queue.push_back(source);
 	dist[source] = 0;
 	exist[source] = true;
@@ -55,7 +53,7 @@ bool spfa() {
 	return dist[target] < INT_MAX;
 }
 
-pair<int, int> solve() {
+std::pair<int, int> solve() {
 	int flow = 0, cost = 0;
 	for (; spfa(); ) {
 		int num = INT_MAX;
@@ -69,9 +67,5 @@ pair<int, int> solve() {
 			cost += num * e.cost[prev[i]];
 		}
 	}
-	return make_pair(flow, cost);
-}
-
-void clear() {
-	e.clear(n);
+	return std::make_pair(flow, cost);
 }

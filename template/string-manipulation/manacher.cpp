@@ -4,7 +4,7 @@ void manacher(char *text, int length) {
         if (j + palindrome[j] <= i) {
             palindrome[i] = 0;
         } else {
-            palindrome[i] = min(palindrome[(j << 1) - i], j + palindrome[j] - i);
+            palindrome[i] = std::min(palindrome[(j << 1) - i], j + palindrome[j] - i);
         }
         while (i - palindrome[i] >= 0 && i + palindrome[i] < length 
                 && text[i - palindrome[i]] == text[i + palindrome[i]]) {

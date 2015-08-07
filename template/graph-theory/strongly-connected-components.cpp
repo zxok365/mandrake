@@ -1,5 +1,3 @@
-const int N = ;
-
 int n, times, comps, top;
 int dfn[N], low[N], comp[N], stack[N];
 

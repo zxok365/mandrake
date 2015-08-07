@@ -66,15 +66,15 @@ void build(char *text, int n) {
 	}
 	for (int step = 1; (1 << step) <= n; ++step) {
 		for (int i = 1; i + (1 << step) <= n; ++i) {
-			value[i][step] = min(value[i][step - 1], value[i + (1 << step - 1)][step - 1]);
+			value[i][step] = std::min(value[i][step - 1], value[i + (1 << step - 1)][step - 1]);
 		}
 	}
 }
 
 int lcp(int left, int right) {
 	if (left > right) {
-		swap(left, right);
+		std::swap(left, right);
 	}
 	int step = log2[right - left];
-	return min(value[left + 1][step], value[right - (1 << step) + 1][step]);
+	return std::min(value[left + 1][step], value[right - (1 << step) + 1][step]);
 }
