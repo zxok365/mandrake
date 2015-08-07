@@ -22,8 +22,8 @@ void add(int x, int y, int c) {
 	e.add(y, x, 0);
 }
 
-bool bfs() {
-	vector<int> queue;
+bool relabel() {
+	std::vector<int> queue;
 	for (int i = 0; i < n; ++i) {
 		curr[i] = e.last[i];
 		dist[i] = -1;
@@ -51,7 +51,7 @@ int dfs(int x, int answer) {
 	for (int &i = curr[x]; ~i; i = e.succ[i]) {
 		int y = e.other[i];
 		if (e.flow[i] && dist[x] == dist[y] + 1) {
-			int number = dfs(y, min(e.flow[i], delta));
+			int number = dfs(y, std::min(e.flow[i], delta));
 			e.flow[i] -= number;
 			e.flow[i ^ 1] += number;
 			delta -= number;
@@ -65,7 +65,7 @@ int dfs(int x, int answer) {
 
 int solve() {
 	int answer = 0;
-	while (bfs()) {
+	while (relabel()) {
 		answer += dfs(source, INT_MAX));
 	}
 	return answer;
