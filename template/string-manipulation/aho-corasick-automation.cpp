@@ -1,26 +1,23 @@
 class Node {
 public:
-	const static int N = 26;
-	
-	Node *child[N];
-	Node *fail;
+	Node *child[256], *fail;
 	int counter;
 
 	Node() {
-		std::fill(child, child + N, NULL);
+		std::fill(child, child + 256, NULL);
 		fail = NULL;
 		counter = 0;
 	}
 };
 
-void insert(Node *x, char *str) {
-	int len = (int)strlen(str);
-	for (int i = 0; i < len; ++i) {
-		int c = str[i] - 'a';
-		if (!x->child[c]) {
-			x->child[c] = new Node();
+void insert(Node *x, char *text) {
+	int length = (int)strlen(text);
+	for (int i = 0; i < length; ++i) {
+		int token = (int)text[i];
+		if (!x->child[token]) {
+			x->child[token] = new Node();
 		}
-		x = x->child[c];
+		x = x->child[token];
 	}
 	x->counter++;
 }
@@ -29,14 +26,14 @@ void build() {
 	std::vector<Node*> queue;
 	queue.push_back(root->fail = root);
 	for (int head = 0; head < (int)queue.size(); ++head) {
-		Node* x = queue[head];
-		for (int i = 0; i < Node::N; ++i) {
-			if (x->child[i]) {
-				x->child[i]->fail = (x == root) ? root : x->fail->child[i];
-				x->child[i]->counter += x->child[i]->fail->counter;
-				queue.push_back(x->child[i]);
+		Node *x = queue[head];
+		for (int token = 0; token < 256; ++token) {
+			if (x->child[token]) {
+				x->child[token]->fail = (x == root) ? root : x->fail->child[token];
+				x->child[token]->counter += x->child[token]->fail->counter;
+				queue.push_back(x->child[token]);
 			} else {
-				x->child[i] = (x == root) ? root : x->fail->child[i];
+				x->child[token] = (x == root) ? root : x->fail->child[token];
 			}
 		}
 	}
