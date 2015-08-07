@@ -1,41 +1,36 @@
-const int N = ;
-
-Data data[N << 2];
-Tag tag[N << 2];
-
-void cover(int x, const Edit &val) {
-		data[x] += val;
-		tag[x] += val;
+void modify(int x, int value) {
+	data[x] += value;
+	tag[x] += value;
 }
 
 void update(int x) {
-		data[x] = data[x << 1] + data[x << 1 | 1];
+	data[x] = data[x << 1] + data[x << 1 | 1];
 }
 
 void release(int x) {
 	if (tag[x]) {
-		cover(x << 1, tag[x]);
-		cover(x << 1 | 1, tag[x]);
+		modify(x << 1, tag[x]);
+		modify(x << 1 | 1, tag[x]);
 		tag[x] = 0;
 	}
 }
 
-void edit(int x, int l, int r, int ql, int qr, const Edit &val) {
+void edit(int x, int l, int r, int ql, int qr, int value) {
 	if (qr < l || r < ql) {
 		return;
 	}
 	if (ql <= l && r <= qr) {
-		cover(x, val);
+		modify(x, value);
 		return;
 	}
 	release(x);
 	int mid = l + r >> 1;
-	edit(x << 1, l, mid, ql, qr, val);
-	edit(x << 1 | 1, mid + 1, r, ql, qr, val);
+	edit(x << 1, l, mid, ql, qr, value);
+	edit(x << 1 | 1, mid + 1, r, ql, qr, value);
 	update(x);
 }
 
-Ans query(int x, int l, int r, int ql, int qr) {
+int query(int x, int l, int r, int ql, int qr) {
 	if (qr < l || r < ql) {
 		return 0;
 	}
@@ -43,11 +38,8 @@ Ans query(int x, int l, int r, int ql, int qr) {
 		return data[x];
 	}
 	release(x);
-	Ans ans = 0;
 	int mid = l + r >> 1;
-	ans += query(x << 1, l, mid, ql, qr);
-	ans += query(x << 1 | 1, mid + 1, r, ql, qr);
-	return ans;
+	return query(x << 1, l, mid, ql, qr) + query(x << 1 | 1, mid + 1, r, ql, qr);
 }
 
 void build(int x, int left, int right) {
