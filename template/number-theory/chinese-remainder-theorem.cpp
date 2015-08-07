@@ -1,17 +1,17 @@
-bool solve(int n, long long r[], long long m[], long long &remainder, long long &modular) {
-	remainder = modular = 1;
+bool solve(int n, std::pair<long long, long long> input[], pair<long long, long long> &output) {
+	output = std::make_pair(1, 1);
 	for (int i = 0; i < n; ++i) {
-		long long x, y;
-		euclid(modular, m[i], x, y);
-		long long divisor = gcd(modular, m[i]);
-		if ((r[i] - remainder) % divisor) {
+		long long number, useless;
+		euclid(output.second, input[i].second, number, useless);
+		long long divisor = __gcd(output.second, input[i].second);
+		if ((input[i].first - output.first) % divisor) {
 			return false;
 		}
-		x *= (r[i] - remainder) / divisor;
-		((x %= m[i]) += m[i]) %= m[i];
-		remainder += modular * x;
-		modular *= m[i] / divisor;
-		((remainder %= modular) += modular) %= modular;
+		number *= (input[i].first - output.first) / divisor;
+		fix(number, input[i].second);
+		output.first += output.second * number;
+		output.second *= input[i].second / divisor;
+		fix(output.first, output.second);
 	}
 	return true;
 }
