@@ -16,7 +16,7 @@ bool dfs(int x) {
 }
 
 int solve() {
-	fill(match, match + m, -1);
+	std::fill(match, match + m, -1);
 	int answer = 0;
 	for (int i = 0; i < n; ++i) {
 		stamp++;
