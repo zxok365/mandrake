@@ -1,5 +1,3 @@
-const int N = , M = ;
-
 struct EdgeList {
 	int size;
 	int last[N];
@@ -45,31 +43,30 @@ bool bfs() {
 	return ~dist[source];
 }
 
-int dfs(int x, int ans) {
+int dfs(int x, int answer) {
 	if (x == target) {
-		return ans;
+		return answer;
 	}
-	int delta = ans;
+	int delta = answer;
 	for (int &i = curr[x]; ~i; i = e.succ[i]) {
 		int y = e.other[i];
 		if (e.flow[i] && dist[x] == dist[y] + 1) {
-			int num = dfs(y, min(e.flow[i], delta));
-			e.flow[i] -= num;
-			e.flow[i ^ 1] += num;
-			if ((delta -= num) == 0) {
-				break;
-			}
+			int number = dfs(y, min(e.flow[i], delta));
+			e.flow[i] -= number;
+			e.flow[i ^ 1] += number;
+			delta -= number;
+		}
+		if (delta == 0) {
+			break;
 		}
 	}
-	return ans - delta;
+	return answer - delta;
 }
 
 int solve() {
-	int ans = 0;
-	for (; bfs(); ans += dfs(source, INT_MAX));
-	return ans;
-}
-
-void clear() {
-	e.clear(n);
+	int answer = 0;
+	while (bfs()) {
+		answer += dfs(source, INT_MAX));
+	}
+	return answer;
 }
