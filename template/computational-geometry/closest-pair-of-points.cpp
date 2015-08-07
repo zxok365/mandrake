@@ -1,36 +1,39 @@
-const int N = ;
-
-int n;
-Point points[N];
-
-__inline bool compare(int i, int j) {
-	return sgn(points[i].y - points[j].y) < 0;
+bool comparex(const Point &a, const Point &b) {
+	return sgn(a.x - b.x) < 0;
 }
 
-double solve(int left, int right) {
+bool comparey(const Point &a, const Point &b) {
+	return sgn(a.y - b.y) < 0;
+}
+
+double solve(Point point[], int left, int right) {
 	if (left == right) {
 		return INF;
 	}
 	if (left + 1 == right) {
-		return dist(points[left], points[right]);
+		return dist(point[left], point[right]);
 	}
 	int mid = left + right >> 1;
-	double len = min(solve(left, mid), solve(mid + 1, right));
-	vector<int> idx;
+	double result = min(solve(left, mid), solve(mid + 1, right));
+	vector<Point> candidate;
 	for (int i = left; i <= right; ++i) {
-		if (points[mid].x - points[i].x <= len) {
-			idx.push_back(i);
+		if (point[mid].x - point[i].x <= result) {
+			candidate.push_back(point[i]);
 		}
 	}
-	sort(idx.begin(), idx.end(), compare);
-	for (int i = 0; i < (int)idx.size(); ++i) {
-		for (int j = i + 1; j < (int)idx.size(); ++j) {
-			int a = idx[i], b = idx[j];
-			if (points[b].y - points[a].y >= len) {
+	sort(candidate.begin(), candidate.end(), compare);
+	for (int i = 0; i < (int)candidate.size(); ++i) {
+		for (int j = i + 1; j < (int)candidate.size(); ++j) {
+			int a = index[i], b = index[j];
+			if (points[b].y - points[a].y >= result) {
 				break;
 			}
-			len = min(len, dist(points[a], points[b]));
+			result = min(result, dist(point[a], point[b]));
 		}
 	}
-	return len;
+	return result;
+}
+
+double solve(Point point[], int length) {
+	return solve(point, 1, length);
 }
