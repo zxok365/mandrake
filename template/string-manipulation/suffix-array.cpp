@@ -1,80 +1,80 @@
-namespace suffix_array {
+int array[N], rank[N], height[N];
+int counter[N], new_array[N], new_rank[N][2];
+int log2[N], value[N][20];
 
-const int N = ;
-
-int n, m;
-int str[N];
-int sa[N], ta[N], tb[N], *rank = ta, *tmp = tb;
-int height[N], log2[N], f[N][20];
-
-bool compare(int i, int j, int l) {
-	return tmp[i] == tmp[j] && tmp[i + l] == tmp[j + l];
-}
-
-void radix_sort() {
-	static int w[N];
-	for (int i = 0; i <= m; ++i) {
-		w[i] = 0;
+void build(char *string, int n) {
+	memset(counter, 0, sizeof(counter));
+	for (int i = 0; i < n; ++i) {
+		counter[(int)string[i]]++;
+	}
+	for (int i = 0; i < 256; ++i) {
+		counter[i + 1] += counter[i];
 	}
 	for (int i = 0; i < n; ++i) {
-		w[rank[i]]++;
+		rank[i] = counter[(int)string[i]] - 1;
 	}
-	for (int i = 1; i < m; ++i) {
-		w[i] += w[i - 1];
-	}
-	for (int i = n - 1; i >= 0; --i) {
-		sa[--w[rank[tmp[i]]]] = tmp[i];
-	}
-}
-
-void solve() {
-	for (int i = 0; i < n; ++i) {
-		rank[i] = str[i];
-		tmp[i] = i;
-	}
-	radix_sort();
-	for (int j = 1, i, p; j < n; j <<= 1, m = p) {
-		for (i = n - j, p = 0; i < n; ++i) {
-			tmp[p++] = i;
+	for (int length = 1; length < n; length <<= 1) {
+		for (int i = 0; i < n; ++i) {
+			new_rank[i][0] = rank[i];
+			new_rank[i][1] = i + length < n ? rank[i + length] + 1 : 0;
 		}
-		for (i = 0; i < n; ++i) {
-			if (sa[i] >= j) {
-				tmp[p++] = sa[i] - j;
-			}
+		memset(counter, 0, sizeof(counter));
+		for (int i = 0; i < n; ++i) {
+			counter[new_rank[i][1]]++;
 		}
-		radix_sort();
-		for (swap(tmp, rank), rank[sa[0]] = 0, i = p = 1; i < n; ++i) {
-			rank[sa[i]] = compare(sa[i - 1], sa[i], j) ? p - 1 : p++;
+		for (int i = 0; i < n; ++i) {
+			counter[i + 1] += counter[i];
+		}
+		for (int i = n - 1; i >= 0; --i) {
+			new_array[--counter[new_rank[i][1]]] = i;
+		}
+		memset(counter, 0, sizeof(counter));
+		for (int i = 0; i < n; ++i) {
+			counter[new_rank[i][0]]++;
+		}
+		for (int i = 0; i < n; ++i) {
+			counter[i + 1] += counter[i];
+		}
+		for (int i = n - 1; i >= 0; --i) {
+			array[--counter[new_rank[new_array[i]][0]]] = new_array[i];
+		}
+		rank[array[0]] = 0;
+		for (int i = 0; i + 1 < n; ++i) {
+			rank[array[i + 1]] = rank[array[i]] + 
+				(new_rank[array[i]][0] != new_rank[array[i + 1]][0] 
+			  || new_rank[array[i]][1] != new_rank[array[i + 1]][1]);
 		}
 	}
-	
-	for (int i = 0, j, k = 0; i < n; ++i, k = max(k - 1, 0)) {
+	for (int i = 0, length = 0; i < n; ++i) {
 		if (rank[i]) {
-			j = sa[rank[i] - 1];
-			for(; str[i + k] == str[j + k]; ++k);
-			height[rank[i]] = k;
+			int j = array[rank[i] - 1];
+			while (i + length < n && j + length < n 
+					&& string[i + length] == string[j + length]) {
+				length++;
+			}
+			height[rank[i]] = length;
+			if (length) {
+				length--;
+			}
 		}
 	}
 	for (int i = 2; i <= n; ++i) {
 		log2[i] = log2[i >> 1] + 1;
 	}
 	for (int i = 1; i < n; ++i) {
-		f[i][0] = height[i];
+		value[i][0] = height[i];
 	}
-	for (int j = 1; (1 << j) <= n; ++j) {
-		for (int i = 1; i + (1 << j) <= n; ++j) {
-			f[i][j] = min(f[i][j - 1], f[i + (1 << j - 1)][j - 1]);
+	for (int step = 1; (1 << step) <= n; ++step) {
+		for (int i = 1; i + (1 << step) <= n; ++i) {
+			value[i][step] = min(value[i][step - 1], value[i + (1 << step - 1)][step - 1]);
 		}
 	}
 }
 
-int lcp(int l, int r) {
-	if (l > r) {
-		swap(l, r);
+int lcp(int left, int right) {
+	if (left > right) {
+		swap(left, right);
 	}
-	l++;
-	int len = log2[r - l + 1];
-	return min(f[l][len], f[r - (1 << len) + 1][len]);
-}
-
+	int step = log2[right - left];
+	return min(value[left + 1][step], value[right - (1 << step) + 1][step]);
 }
