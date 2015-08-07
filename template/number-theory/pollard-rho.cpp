@@ -18,11 +18,11 @@ long long pollard_rho(const long long &number, const long long &seed) {
 }
 
 void factorize(const long long &number, std::vector<long long> &divisor) {
-	if (n > 1) {
-		if (miller_rabin(n)) {
-			divisor.push_back(n);
+	if (number > 1) {
+		if (miller_rabin(number)) {
+			divisor.push_back(number);
 		} else {
-			long long factor = n;
+			long long factor = number;
 			for (; factor >= number; factor = pollard_rho(number, rand() % (number - 1) + 1));
 			factorize(number / factor, divisor);
 			factorize(factor, divisor);
