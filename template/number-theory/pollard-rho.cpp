@@ -1,51 +1,31 @@
-long long multiply(const long long &x, const long long &y, const long long &modular) {
-	long long ret = x * y - (long long)((long double)x * y / modular) * modular;
-	for (; ret < 0; ret += modular);
-	for (; ret >= modular; ret -= modular);
-	return ret;
-}
-
-long long pollard_rho(const long long &n, const long long &c) {
-	long long x = rand() % (n - 1) + 1, y = x;
-	int head = 1, tail = 2;
-	for (; true; ) {
-		x = multiply(x, x, n);
-		if ((x += c) >= n) {
-			x -= n;
-		}
+long long pollard_rho(const long long &number, const long long &seed) {
+	long long x = rand() % (number - 1) + 1, y = x;
+	for (int head = 1, tail = 2; ; ) {
+		x = multiply_mod(x, x, number);
+		x = add_mod(x, seed, number);
 		if (x == y) {
-			return n;
+			return number;
 		}
-		long long d = __gcd(abs(x - y), n);
-		if (d > 1 && d < n) {
-			return d;
+		long long answer = __gcd(std::abs(x - y), number);
+		if (answer > 1 && answer < number) {
+			return answer;
 		}
-		if ((++head) == tail) {
+		if (++head == tail) {
 			y = x;
 			tail <<= 1;
 		}
 	}
 }
 
-vector<long long> mergy(const vector<long long> &a, const vector<long long> &b) {
-	vector<long long> vec;
-	for (int i = 0; i < (int)a.size(); ++i) {
-		vec.push_back(a[i]);
+void factorize(const long long &number, std::vector<long long> &divisor) {
+	if (n > 1) {
+		if (miller_rabin(n)) {
+			divisor.push_back(n);
+		} else {
+			long long factor = n;
+			for (; factor >= number; factor = pollard_rho(number, rand() % (number - 1) + 1));
+			factorize(number / factor, divisor);
+			factorize(factor, divisor);
+		}
 	}
-	for (int i = 0; i < (int)b.size(); ++i) {
-		vec.push_back(b[i]);
-	}
-	return vec;
-}
-
-vector<long long> factor(const long long &n) {
-	if (n <= 1) {
-		return vector<long long>();
-	}
-	if (miller_rabin::prime(n)) {
-		return vector<long long>(1, n);
-	}
-	long long p = n;
-	for (; p >= n; p = pollard_rho(n, rand() % (n - 1) + 1));
-	return mergy(factor(n / p), factor(p));
 }
