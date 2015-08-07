@@ -2,16 +2,16 @@ int array[N], rank[N], height[N];
 int counter[N], new_array[N], new_rank[N][2];
 int log2[N], value[N][20];
 
-void build(char *string, int n) {
+void build(char *text, int n) {
 	memset(counter, 0, sizeof(counter));
 	for (int i = 0; i < n; ++i) {
-		counter[(int)string[i]]++;
+		counter[(int)text[i]]++;
 	}
 	for (int i = 0; i < 256; ++i) {
 		counter[i + 1] += counter[i];
 	}
 	for (int i = 0; i < n; ++i) {
-		rank[i] = counter[(int)string[i]] - 1;
+		rank[i] = counter[(int)text[i]] - 1;
 	}
 	for (int length = 1; length < n; length <<= 1) {
 		for (int i = 0; i < n; ++i) {
@@ -49,7 +49,7 @@ void build(char *string, int n) {
 		if (rank[i]) {
 			int j = array[rank[i] - 1];
 			while (i + length < n && j + length < n 
-					&& string[i + length] == string[j + length]) {
+					&& text[i + length] == text[j + length]) {
 				length++;
 			}
 			height[rank[i]] = length;
