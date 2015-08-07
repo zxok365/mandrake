@@ -1,17 +1,14 @@
-const int N = ;
+int father[N], height[N], size[N], son[N], top[N], pos[N], data[N];
 
-int n;
-vector<int> adj[N];
-int father[N], height[N], size[N], son[N], top[N], idx[N], num[N];
-
-void prepare() {
-	vector<int> queue;
-	father[1] = height[1] = 0;
-	queue.push_back(1);
+void build(int root) {
+	std::vector<int> queue;
+	father[root] = -1;
+	height[root] = 0;
+	queue.push_back(root);
 	for (int head = 0; head < (int)queue.size(); ++head) {
 		int x = queue[head];
-		for (int i = 0; i < (int)adj[x].size(); ++i) {
-			int y = adj[x][i];
+		for (int i = 0; i < (int)edge[x].size(); ++i) {
+			int y = edge[x][i];
 			if (y != father[x]) {
 				father[y] = x;
 				height[y] = height[x] + 1;
@@ -19,12 +16,12 @@ void prepare() {
 			}
 		}
 	}
-	for (int i = n - 1; i >= 0; --i) {
-		int x = queue[i];
+	for (int index = n - 1; index >= 0; --index) {
+		int x = queue[index];
 		size[x] = 1;
 		son[x] = -1;
-		for (int j = 0; j < (int)adj[x].size(); ++j) {
-			int y = adj[x][j];
+		for (int i = 0; i < (int)edge[x].size(); ++i) {
+			int y = edge[x][i];
 			if (y != father[x]) {
 				size[x] += size[y];
 				if (son[x] == -1 || size[son[x]] < size[y]) {
@@ -33,40 +30,40 @@ void prepare() {
 			}
 		}
 	}
-	int tot = 0;
-	fill(top + 1, top + n + 1, 0);
-	for (int i = 0; i < n; ++i) {
-		int x = queue[i];
+	std::fill(top, top + n, 0);
+	int counter = 0;
+	for (int index = 0; index < n; ++index) {
+		int x = queue[index];
 		if (top[x] == 0) {
 			for (int y = x; y != -1; y = son[y]) {
 				top[y] = x;
-				idx[y] = ++tot;
-				num[tot] = //data[y];
+				pos[y] = ++counter;
+				data[counter] = value[y];
 			}
 		}
 	}
-	//build(1, 1, n);
+	build(1, 1, n);
 }
 
-void handle(int x, int y) {
-	for (; ; ) {
+void solve(int x, int y) {
+	while (true) {
 		if (top[x] == top[y]) {
 			if (x == y) {
-				//handle(1, 1, n, idx[x], idx[x]);
+				solve(1, 1, n, pos[x], pos[x]);
 			} else {
 				if (height[x] < height[y]) {
-					//handle(1, 1, n, idx[x], idx[y]);
+					solve(1, 1, n, pos[x], pos[y]);
 				} else {
-					//handle(1, 1, n, idx[y], idx[x]);
+					solve(1, 1, n, pos[y], pos[x]);
 				}
 			}
 			break;
 		}
 		if (height[top[x]] > height[top[y]]) {
-			//handle(1, 1, n, idx[top[x]], idx[x]);
+			solve(1, 1, n, pos[top[x]], pos[x]);
 			x = father[top[x]];
 		} else {
-			//handle(1, 1, n, idx[top[y]], idx[y]);
+			solve(1, 1, n, pos[top[y]], pos[y]);
 			y = father[top[y]];
 		}
 	}
