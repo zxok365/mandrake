@@ -1,46 +1,27 @@
-const int n = 9;
-const int base[] = {2, 3, 5, 7, 11, 13, 17, 19, 23};
+const int BASE[12] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};
 
-long long multiply(const long long &x, const long long &y, const long long &modular) {
-	long long ret = x * y - (long long)((long double)x * y / modular) * modular;
-	for (; ret < 0; ret += modular);
-	for (; ret >= modular; ret -= modular);
-	return ret;
+bool check(const long long &prime, const long long &base) {
+	long long number = prime - 1;
+	for (; ~number & 1; number >>= 1);
+	long long result = power_mod(base, number, prime);
+	for (; number != prime - 1 && result != 1 && result != prime - 1; number <<= 1) {
+		result = multiply_mod(result, result, prime);
+	}
+	return result == prime - 1 || (number & 1) == 1;
 }
 
-long long power(const long long &x, const long long &k, const long long &modular) {
-	long long ans = 1, num = x % modular;
-	for (long long i = k; i > 0; i >>= 1) {
-		if (i & 1) {
-			ans = multiply(ans, num, modular);
-		}
-		num = multiply(num, num, modular);
-	}
-	return ans;
-}
-
-bool check(const long long &p, const long long &base) {
-	long long n = p - 1;
-	for (; !(n & 1); n >>= 1);
-	long long m = power(base, n, p);
-	for (; n != p - 1 && m != 1 && m != p - 1; ) {
-		m = multiply(m, m, p);
-		n <<= 1;
-	}
-	return m == p - 1 || (n & 1) == 1;
-}
-
-bool prime(const long long &p) {
-	for (int i = 0; i < n; ++i) {
-		if (base[i] == p) {
-			return true;
-		}
-	}
-	if (p == 1 || !(p & 1)) {
+bool miller_rabin(const long long &number) {
+	if (number < 2) {
 		return false;
 	}
-	for (int i = 0; i < n; ++i) {
-		if (!check(p, base[i])) {
+	if (number < 4) {
+		return true;
+	}
+	if (number == 3215031751LL) {
+		return false;
+	}
+	for (int i = 0; i < 12 && BASE[i] < number; ++i) {
+		if (!check(number, BASE[i])) {
 			return false;
 		}
 	}
