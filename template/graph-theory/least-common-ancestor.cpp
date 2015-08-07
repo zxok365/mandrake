@@ -1,5 +1,3 @@
-namespace least_common_ancestor {
-
 const int N = , M = ;
 
 int n;
@@ -60,6 +58,4 @@ void clear(int n) {
 	for (int i = 1; i <= n; ++i) {
 		adj[i].clear();
 	}
-}
-
 }

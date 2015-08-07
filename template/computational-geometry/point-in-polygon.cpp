@@ -1,5 +1,3 @@
-namespace point_in_polygon {
-
 bool point_on_line(const Point &a, const Point &b, const Point &c) {
 	return sgn(det(a - b, c - b)) == 0 && sgn(dot(b - a, c - a)) <= 0;
 }
@@ -19,6 +17,4 @@ bool point_in_polygon(const Point &p, const vector<Point> &polygon) {
 		counter -= (x < 0 && z <= 0 && y > 0);
 	}
 	return counter;
-}
-
 }

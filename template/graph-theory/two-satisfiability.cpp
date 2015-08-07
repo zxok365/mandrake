@@ -1,5 +1,3 @@
-namespace two_satisfiability {
-
 const int N = ;
 
 int n, times, comps, top;
@@ -53,6 +51,4 @@ void clear() {
 	for (int i = 2; i <= (n << 1 | 1); ++i) {
 		adj[i].clear();
 	}
-}
-
 }

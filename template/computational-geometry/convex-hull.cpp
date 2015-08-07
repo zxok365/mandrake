@@ -1,5 +1,3 @@
-namespace convex_hull {
-
 vector<Point> convex_hull(vector<Point> point) {
 	int n = (int)point.size();
 	if (n <= 1) {
@@ -32,6 +30,4 @@ vector<Point> convex_hull(vector<Point> point) {
 		}
 	}
 	return convex;
-}
-
 }

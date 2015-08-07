@@ -1,5 +1,3 @@
-namespace strongly_connected_components {
-
 const int N = ;
 
 int n, times, comps, top;
@@ -41,6 +39,4 @@ void clear() {
 	for (int i = 1; i <= n; ++i) {
 		adj[i].clear();
 	}
-}
-
 }

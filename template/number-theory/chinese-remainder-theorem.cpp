@@ -1,5 +1,3 @@
-namespace chinese_remainder_theorem {
-
 bool solve(int n, long long r[], long long m[], long long &remainder, long long &modular) {
 	remainder = modular = 1;
 	for (int i = 0; i < n; ++i) {
@@ -16,6 +14,4 @@ bool solve(int n, long long r[], long long m[], long long &remainder, long long 
 		((remainder %= modular) += modular) %= modular;
 	}
 	return true;
-}
-
 }

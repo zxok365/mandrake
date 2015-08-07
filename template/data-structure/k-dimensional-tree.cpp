@@ -1,5 +1,3 @@
-namespace k_dimensional_tree {
-
 const int N = ;
 
 struct Point {
@@ -234,6 +232,4 @@ void query(int x, const Point &p, int k, pair<long long, int> ret[], bool dim = 
 
 void clear() {
 	size = 0;
-}
-
 }

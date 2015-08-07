@@ -1,5 +1,3 @@
-namespace adaptive_simpson {
-
 template<typename function>
 double area(function f, const double &left, const double &right) {
 	double mid = (left + right) / 2;
@@ -21,6 +19,4 @@ double simpson(function f, const double &left, const double &right, const double
 template<typename function>
 double simpson(function f, const double &left, const double &right, const double &eps) {
 	return simpson(f, left, right, eps, area(f, left, right));
-}
-
 }

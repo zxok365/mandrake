@@ -1,5 +1,3 @@
-namespace heavy_light_decomposition {
-
 const int N = ;
 
 int n;
@@ -72,6 +70,4 @@ void handle(int x, int y) {
 			y = father[top[y]];
 		}
 	}
-}
-
 }

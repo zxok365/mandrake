@@ -1,5 +1,3 @@
-namespace aho_aorasick_automation {
-
 class Node {
 public:
 	const static int N = 26;
@@ -43,5 +41,3 @@ void build() {
 		}
 	}
 }
-
-};

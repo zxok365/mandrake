@@ -1,5 +1,3 @@
-namespace segment_tree {
-
 const int N = ;
 
 Data data[N << 2];
@@ -62,6 +60,4 @@ void build(int x, int left, int right) {
 		build(x << 1 | 1, mid + 1, right);
 		update(x);
 	}
-}
-
 }

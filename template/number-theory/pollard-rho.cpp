@@ -1,5 +1,3 @@
-namespace pollard_rho {
-
 long long multiply(const long long &x, const long long &y, const long long &modular) {
 	long long ret = x * y - (long long)((long double)x * y / modular) * modular;
 	for (; ret < 0; ret += modular);
@@ -50,6 +48,4 @@ vector<long long> factor(const long long &n) {
 	long long p = n;
 	for (; p >= n; p = pollard_rho(n, rand() % (n - 1) + 1));
 	return mergy(factor(n / p), factor(p));
-}
-
 }

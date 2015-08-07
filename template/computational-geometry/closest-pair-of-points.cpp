@@ -1,5 +1,3 @@
-namespace closest_pair_of_points {
-
 const int N = ;
 
 int n;
@@ -31,10 +29,8 @@ double solve(int left, int right) {
 			if (points[b].y - points[a].y >= len) {
 				break;
 			}
-			len = min(len, dist(a, b));
+			len = min(len, dist(points[a], points[b]));
 		}
 	}
 	return len;
-}
-
 }

@@ -1,5 +1,3 @@
-namespace dancing_links {
-
 const int N = , M = , G = ;
 
 struct node {
@@ -103,6 +101,4 @@ void clear() {
 	for (int i = 1; i <= tot; ++i) {
 		grid[i].clear();
 	}
-}
-
 }

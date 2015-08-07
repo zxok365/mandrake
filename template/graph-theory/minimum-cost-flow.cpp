@@ -1,5 +1,3 @@
-namespace minimum_cost_flow {
-
 const N = , M = ;
 
 struct EdgeList {
@@ -76,6 +74,4 @@ pair<int, int> solve() {
 
 void clear() {
 	e.clear(n);
-}
-
 }

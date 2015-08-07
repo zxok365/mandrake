@@ -1,5 +1,3 @@
-namespace range_minimum_query {
-
 const int N = , M = ;
 
 int log2[N];
@@ -22,6 +20,4 @@ void build(int n, int a[]) {
 pair<int, int> solve(int left, int right) {
 	int k = log2[right - left + 1];
 	return min(num[left][k], num[right - (1 << k) + 1][k]);
-}
-
 }

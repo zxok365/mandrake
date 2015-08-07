@@ -1,5 +1,3 @@
-namespace maximum_flow {
-
 const int N = , M = ;
 
 struct EdgeList {
@@ -74,6 +72,4 @@ int solve() {
 
 void clear() {
 	e.clear(n);
-}
-
 }

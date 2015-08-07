@@ -1,5 +1,3 @@
-namespace maximum_matching {
-
 const int N = ;
 
 int n, m, times;
@@ -38,23 +36,8 @@ int solve() {
 	return ans;
 }
 
-void greedy() {
-	fill(matchy + 1, matchy + m + 1, 0);
-	for (int i = 1; i <= n; ++i) {
-		for (int j = 0; j < (int)adj[i].size(); ++j) {
-			int x = adj[i][j];
-			if (!matchy[x]) {
-				matchy[x] = i;
-				break;
-			}
-		}
-	}
-}
-
 void clear() {
 	for (int i = 1; i <= n; ++i) {
 		adj[i].clear();
 	}
-}
-
 }
