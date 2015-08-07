@@ -1,20 +1,10 @@
-const int N = , M = ;
-
-int n;
-vector<int> adj[N];
-int height[N];
-int parent[N][M];
-
-void add(int x, int y) {
-	adj[x].push_back(y);
-	adj[y].push_back(x);
-}
+int height[N], parent[N][20];
 
 int lca(int x, int y) {
 	if (height[x] < height[y]) {
-		swap(x, y);
+		std::swap(x, y);
 	}
-	for (int i = 0; i < M; ++i) {
+	for (int i = 0; i < 20; ++i) {
 		if (height[x] - height[y] >> i & 1) {
 			x = parent[x][i];
 		}
@@ -22,7 +12,7 @@ int lca(int x, int y) {
 	if (x == y) {
 		return x;
 	}
-	for (int i = M - 1; i >= 0; --i) {
+	for (int i = 19; i >= 0; --i) {
 		if (parent[x][i] != parent[y][i]) {
 			x = parent[x][i];
 			y = parent[y][i];
@@ -32,14 +22,14 @@ int lca(int x, int y) {
 }
 
 void build(int root) {
-	vector<int> queue;
-	fill(height + 1, height + n + 1, -1);
+	std::vector<int> queue;
+	std::fill(height, height + n, -1);
 	queue.push_back(root);
 	height[root] = 0;
 	for (int head = 0; head < (int)queue.size(); ++head) {
 		int x = queue[head];
-		for (int i = 0; i < (int)adj[x].size(); ++i) {
-			int y = adj[x][i];
+		for (int i = 0; i < (int)edge[x].size(); ++i) {
+			int y = edge[x][i];
 			if (height[y] == -1) {
 				height[y] = height[x] + 1;
 				parent[y][0] = x;
@@ -47,15 +37,13 @@ void build(int root) {
 			}
 		}
 	}
-	for (int j = 1; j < M; ++j) {
-		for (int i = 1; i <= n; ++i) {
-			parent[i][j] = parent[parent[i][j - 1]][j - 1];
+	for (int step = 1; step < 20; ++step) {
+		for (int i = 0; i < n; ++i) {
+			if (parent[i][step - 1] == -1) {
+				parent[i][step] = -1;
+			} else {
+				parent[i][step] = parent[parent[i][step - 1]][step - 1];
+			}
 		}
-	}
-}
-
-void clear(int n) {
-	for (int i = 1; i <= n; ++i) {
-		adj[i].clear();
 	}
 }
