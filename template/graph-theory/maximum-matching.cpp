@@ -1,21 +1,13 @@
-const int N = ;
-
-int n, m, times;
-vector<int> adj[N];
-int matchx[N], matchy[N];
-int visit[N];
-
-void add(int x, int y) {
-	adj[x].push_back(y);
-}
+int n, m, stamp;
+int match[N], visit[N];
 
 bool dfs(int x) {
-	for (int i = 0; i < (int)adj[x].size(); ++i) {
-		int y = adj[x][i];
-		if (visit[y] != times) {
-			visit[y] = times;
-			if (!matchy[y] || dfs(matchy[y])) {
-				matchy[y] = x;
+	for (int i = 0; i < (int)edge[x].size(); ++i) {
+		int y = edge[x][i];
+		if (visit[y] != stamp) {
+			visit[y] = stamp;
+			if (match[y] == -1 || dfs(match[y])) {
+				match[y] = x;
 				return true;
 			}
 		}
@@ -24,20 +16,11 @@ bool dfs(int x) {
 }
 
 int solve() {
-	fill(matchy + 1, matchy + m + 1, 0);
-	int ans = 0;
-	for (int i = 1; i <= n; ++i) {
-		times++;
-		ans += dfs(i);
+	fill(match, match + m, -1);
+	int answer = 0;
+	for (int i = 0; i < n; ++i) {
+		stamp++;
+		answer += dfs(i);
 	}
-	for (int i = 1; i <= m; ++i) {
-		matchx[matchy[i]] = i;
-	}
-	return ans;
-}
-
-void clear() {
-	for (int i = 1; i <= n; ++i) {
-		adj[i].clear();
-	}
+	return answer;
 }
