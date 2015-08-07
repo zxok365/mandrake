@@ -6,7 +6,7 @@ bool comparey(const Point &a, const Point &b) {
 	return sgn(a.y - b.y) < 0;
 }
 
-double solve(Point point[], int left, int right) {
+double solve(const std::vector<Point> &point, int left, int right) {
 	if (left == right) {
 		return INF;
 	}
@@ -14,26 +14,26 @@ double solve(Point point[], int left, int right) {
 		return dist(point[left], point[right]);
 	}
 	int mid = left + right >> 1;
-	double result = min(solve(left, mid), solve(mid + 1, right));
-	vector<Point> candidate;
+	double result = std::min(solve(left, mid), solve(mid + 1, right));
+	std::vector<Point> candidate;
 	for (int i = left; i <= right; ++i) {
-		if (point[mid].x - point[i].x <= result) {
+		if (std::abs(point[i].x - point[mid].x) <= result) {
 			candidate.push_back(point[i]);
 		}
 	}
-	sort(candidate.begin(), candidate.end(), compare);
+	std::sort(candidate.begin(), candidate.end(), comparey);
 	for (int i = 0; i < (int)candidate.size(); ++i) {
 		for (int j = i + 1; j < (int)candidate.size(); ++j) {
-			int a = index[i], b = index[j];
-			if (points[b].y - points[a].y >= result) {
+			if (std::abs(candidate[i].y - candidate[j].y) >= result) {
 				break;
 			}
-			result = min(result, dist(point[a], point[b]));
+			result = std::min(result, dist(candidate[i], candidate[j]));
 		}
 	}
 	return result;
 }
 
-double solve(Point point[], int length) {
-	return solve(point, 1, length);
+double solve(std::vector<Point> point) {
+	std::sort(point.begin(), point.end(), comparex);
+	return solve(point, 0, (int)point.size() - 1);
 }
