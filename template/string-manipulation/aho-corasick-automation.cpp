@@ -3,10 +3,8 @@ public:
 	Node *child[256], *fail;
 	int counter;
 
-	Node() {
-		std::fill(child, child + 256, NULL);
-		fail = NULL;
-		counter = 0;
+	Node() : fail(NULL), counter(0) {
+		memset(child, NULL, sizeof(child));
 	}
 };
 
