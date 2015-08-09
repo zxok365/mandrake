@@ -1,6 +1,6 @@
 class Node {
 public:
-	Node *child[N], *parent;
+	Node *child[256], *parent;
 	int length;
 	
 	Node(int length) : parent(NULL), length(length) {
