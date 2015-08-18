@@ -3,7 +3,7 @@ int text[N];
 
 class Node {
 public:
-	Node *child[26], *fail;
+	Node *child[256], *fail;
 	int length;
 	
 	Node(int length) : length(length), fail(NULL) {
