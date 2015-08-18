@@ -1,6 +1,3 @@
-int size;
-int text[N];
-
 class Node {
 public:
 	Node *child[256], *fail;
@@ -11,6 +8,8 @@ public:
 	}
 };
 
+int size;
+int text[N];
 Node *odd, *even;
 
 Node* match(Node *now) {
@@ -20,14 +19,12 @@ Node* match(Node *now) {
 
 bool extend(Node *&last, int token) {
 	text[++size] = token;
-	
 	Node *now = last;
 	now = match(now);
 	if (now->child[token]) {
 		last = now->child[token];
 		return false;
 	}
-	
 	last = now->child[token] = new Node(now->length + 2);
 	if (now == odd) {
 		last->fail = even;
