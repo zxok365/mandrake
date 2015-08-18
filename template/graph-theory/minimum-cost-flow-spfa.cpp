@@ -2,12 +2,10 @@ struct EdgeList {
 	int size;
 	int last[N];
 	int succ[M], other[M], flow[M], cost[M];
-	
 	void clear(int n) {
 		size = 0;
 		std::fill(last, last + n, -1);
 	}
-	
 	void add(int x, int y, int c, int w) {
 		succ[size] = last[x];
 		last[x] = size;
