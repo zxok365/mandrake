@@ -3,7 +3,7 @@ public:
 	Node *child[256], *fail;
 	int length;
 	
-	Node(int length) : length(length), fail(NULL) {
+	Node(int length) : fail(NULL), length(length) {
 		memset(child, NULL, sizeof(child));
 	}
 };
