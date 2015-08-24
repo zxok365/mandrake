@@ -7,15 +7,15 @@ bool dfs(int x) {
 		if (visity[y]) {
 			continue;
 		}
-		int number = labelx[x] + labely[y] - graph[x][y];
-		if (number == 0) {
+		int delta = labelx[x] + labely[y] - graph[x][y];
+		if (delta == 0) {
 			visity[y] = true;
 			if (match[y] == -1 || dfs(match[y])) {
 				match[y] = x;
 				return true;
 			}
 		} else {
-			slack[y] = std::min(slack[y], number);
+			slack[y] = std::min(slack[y], delta);
 		}
 	}
 	return false;
