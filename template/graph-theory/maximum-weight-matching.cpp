@@ -31,7 +31,7 @@ int solve() {
 		}
 	}
 	for (int i = 0; i < n; ++i) {
-		for (; ; ) {
+		while (true) {
 			std::fill(visitx, visitx + n, 0);
 			std::fill(visity, visity + n, 0);
 			for (int j = 0; j < n; ++j) {
