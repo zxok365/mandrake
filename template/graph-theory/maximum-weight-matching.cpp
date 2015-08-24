@@ -23,17 +23,17 @@ bool dfs(int x) {
 
 int solve() {
 	for (int i = 0; i < n; ++i) {
+		match[i] = -1;
 		labelx[i] = INT_MIN;
 		labely[i] = 0;
-		match[i] = -1;
 		for (int j = 0; j < n; ++j) {
 			labelx[i] = std::max(labelx[i], graph[i][j]);
 		}
 	}
 	for (int i = 0; i < n; ++i) {
 		for (; ; ) {
-			memset(visitx, 0, sizeof(visitx));
-			memset(visity, 0, sizeof(visity));
+			std::fill(visitx, visitx + n, 0);
+			std::fill(visity, visity + n, 0);
 			for (int j = 0; j < n; ++j) {
 				slack[j] = INT_MAX;
 			}
