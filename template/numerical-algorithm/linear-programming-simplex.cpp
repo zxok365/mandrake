@@ -25,7 +25,7 @@ std::vector<double> solve(const std::vector<std::vector<double> > &a,
 		if (r < n) {
 			std::swap(index[s], index[r + m]);
 			value[r][s] = 1 / value[r][s];
-			for (int j = 0; j < m; ++j) {
+			for (int j = 0; j <= m; ++j) {
 				if (j != s) {
 					value[r][j] *= -value[r][s];
 				}
