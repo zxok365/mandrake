@@ -11,7 +11,7 @@ double simpson(const double &left, const double &right, const double &eps, const
 	if (std::abs(area_total - area_sum) < 15 * eps) {
 		return area_total + (area_total - area_sum) / 15;
 	}
-	return simpson(left, right, eps / 2, area_left) + simpson(mid, right, eps / 2, area_right);
+	return simpson(left, mid, eps / 2, area_left) + simpson(mid, right, eps / 2, area_right);
 }
 
 double simpson(const double &left, const double &right, const double &eps) {
