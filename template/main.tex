@@ -11,9 +11,9 @@
 
 \geometry{margin=1in}
 
-\setCJKmainfont[BoldFont={SimHei}]
-{SimSun}
-\setCJKmonofont{FangSong}
+\setmainfont{Microsoft YaHei UI}
+\setCJKmainfont[BoldFont={Microsoft YaHei UI}]{Microsoft YaHei UI}
+\setCJKmonofont{Microsoft YaHei UI}
 
 \newcommand{\cppcode}[1]{
     \inputminted[mathescape]{cpp}{source/#1}
@@ -31,10 +31,164 @@
 
 \clearpage
 
+\section{数论}
+
+\subsection{快速求逆元}
+
+\cppcode{number-theory/inverse.cpp}
+
+\subsection{扩展欧几里德算法}
+
+\cppcode{number-theory/extended-euclid.cpp}
+
+\subsection{中国剩余定理}
+
+\cppcode{number-theory/chinese-remainder-theorem.cpp}
+
+\subsection{Miller Rabin 素数测试}
+
+\cppcode{number-theory/miller-rabin.cpp}
+
+\subsection{Pollard Rho 大数分解}
+
+\cppcode{number-theory/pollard-rho.cpp}
+
+\subsection{快速数论变换}
+
+\subsection{原根}
+
+\subsection{离散对数}
+
+\subsection{离散平方根}
+
+\subsection{佩尔方程求解}
+
+\subsection{牛顿迭代法}
+
+\subsection{直线下整点个数}
+
+\cppcode{number-theory/lattice-count.cpp}
+
+\section{数值}
+
+\subsection{高斯消元}
+
+\subsection{快速傅立叶变换}
+
+\cppcode{numerical-algorithm/fast-fourier-transform.cpp}
+
+\subsection{单纯形法求解线性规划}
+
+\cppcode{numerical-algorithm/linear-programming-simplex.cpp}
+
+\subsection{自适应辛普森}
+
+\cppcode{numerical-algorithm/adaptive-simpson.cpp}
+
+\subsection{多项式方程求解}
+
+\subsection{最小二乘法}
+
+\section{数据结构}
+
+\subsection{平衡的二叉查找树}
+
+\subsubsection{Treap}
+
+\cppcode{data-structure/treap.cpp}
+
+\subsubsection{Splay}
+
+\subsection{坚固的数据结构}
+
+\subsubsection{坚固的线段树}
+
+\cppcode{data-structure/persistent-segment-tree.cpp}
+
+\subsubsection{坚固的平衡树}
+
+\cppcode{data-structure/persistent-treap.cpp}
+
+\subsubsection{坚固的字符串}
+
+\subsubsection{坚固的左偏树}
+
+\subsection{树上的魔术师}
+
+\subsubsection{轻重树链剖分}
+
+\cppcode{data-structure/heavy-light-decomposition.cpp}
+
+\subsubsection{Link Cut Tree}
+
+\subsubsection{AAA Tree}
+
+\subsection{k-d树}
+
 \section{图论}
+
+\subsection{二分图最大匹配}
+
+\subsubsection{Hungary算法}
+
+\cppcode{graph-theory/maximum-matching-hungary.cpp}
+
+\subsubsection{Hopcroft Karp算法}
+
+\cppcode{graph-theory/maximum-matching-hopcroft-karp.cpp}
+
+\subsection{最小费用最大流}
+
+\subsubsection{SPFA费用流}
+
+\cppcode{graph-theory/minimum-cost-flow-spfa.cpp}
+
+\subsubsection{ZKW费用流}
+
+\cppcode{graph-theory/minimum-cost-flow-zkw.cpp}
 
 \subsection{有根树的同构}
 
 \cppcode{graph-theory/rooted-tree-isomorphism.cpp}
+
+\section{字符串}
+
+\subsection{模式匹配}
+
+\subsubsection{KMP算法}
+
+\cppcode{string-manipulation/knuth-morris-pratt.cpp}
+
+\subsubsection{AC自动机}
+
+\cppcode{string-manipulation/aho-corasick-automation.cpp}
+
+\subsection{后缀三姐妹}
+
+\subsubsection{后缀数组}
+
+\cppcode{string-manipulation/suffix-array.cpp}
+
+\subsubsection{后缀自动机}
+
+\cppcode{string-manipulation/suffix-automation.cpp}
+
+\subsection{回文三兄弟}
+
+\subsubsection{Manacher算法}
+
+\cppcode{string-manipulation/manacher.cpp}
+
+\subsubsection{回文树}
+
+\cppcode{string-manipulation/palindrome-tree.cpp}
+
+\subsection{循环串最小表示}
+
+\cppcode{string-manipulation/minimum-circular-representation.cpp}
+
+\section{计算几何}
+
+\section{其他}
 
 \end{document}
