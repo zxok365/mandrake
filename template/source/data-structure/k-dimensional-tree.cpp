@@ -4,11 +4,11 @@ struct Point {
     int x, y, id;
 };
 
-__inline long long sqr(const long long &x) {
+long long sqr(const long long &x) {
     return abs(x);
 }
 
-__inline long long dist(const Point &a, const Point &b) {
+long long dist(const Point &a, const Point &b) {
     return sqr(a.x - b.x) + sqr(a.y - b.y);
 }
 
@@ -83,11 +83,11 @@ int size;
 Point a[N];
 Node tree[N];
 
-__inline bool xcompare(const Point &a, const Point &b) {
+bool xcompare(const Point &a, const Point &b) {
     return a.x < b.x || a.x == b.x && a.y < b.y;
 }
 
-__inline bool ycompare(const Point &a, const Point &b) {
+bool ycompare(const Point &a, const Point &b) {
     return a.y < b.y || a.y == b.y && a.x < b.x;
 }
 

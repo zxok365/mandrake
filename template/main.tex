@@ -71,6 +71,12 @@
 
 \subsection{快速数论变换}
 
+返回结果：$$c_i=\sum_{0 \leq j \leq i} a_j \cdot b_{i-j} (mod) \ (0 \leq i < n)$$
+\indent 使用说明：$magic$是$mod$的原根\\
+\indent 时间复杂度：$O(n log n)$
+
+\cppcode{number-theory/number-theoretic-transform.cpp}
+
 \subsection{原根}
 
 \subsection{离散对数}
@@ -308,6 +314,8 @@ ORE性质：$$\forall x,y \in V \wedge (x,y) \notin E \ \ s.t. \ \ deg_x+deg_y \
 \subsection{多边形}
 
 \subsubsection{判断点在多边形内部}
+
+\cppcode{computational-geometry/point-in-polygon.cpp}
 
 \subsubsection{旋转卡壳}
 
