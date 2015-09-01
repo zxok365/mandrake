@@ -4,7 +4,7 @@ public:
     int key;
     int size, priority;
 
-    Node(int key, Node *left, Node *right) : key(key), size(1), priority(rand()) {
+    Node(Node *left, Node *right, int key) : key(key), size(1), priority(rand()) {
         child[0] = left;
         child[1] = right;
     }
@@ -42,10 +42,11 @@ void remove(Node *&x, int key) {
         remove(x->child[key > x->key], key);
     } else if (x->child[0] == null && x->child[1] == null) {
         x = null;
+        return;
     } else {
         int dir = x->child[0]->priority > x->child[1]->priority;
         rotate(x, dir);
-        remove(x->child[!dir], index);
+        remove(x->child[dir ^ 1], key);
     }
     x->update();
 }
