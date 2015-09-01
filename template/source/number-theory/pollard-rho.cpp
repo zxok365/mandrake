@@ -6,7 +6,7 @@ long long pollard_rho(const long long &number, const long long &seed) {
         if (x == y) {
             return number;
         }
-        long long answer = __gcd(std::abs(x - y), number);
+        long long answer = std::__gcd(abs(x - y), number);
         if (answer > 1 && answer < number) {
             return answer;
         }

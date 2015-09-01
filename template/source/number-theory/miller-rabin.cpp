@@ -17,7 +17,7 @@ bool miller_rabin(const long long &number) {
     if (number < 4) {
         return true;
     }
-    if (number == 3215031751LL) {
+    if (~number & 1) {
         return false;
     }
     for (int i = 0; i < 12 && BASE[i] < number; ++i) {
