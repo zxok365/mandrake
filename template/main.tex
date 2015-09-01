@@ -390,22 +390,14 @@ ORE性质：$$\forall x,y \in V \wedge (x,y) \notin E \ \ s.t. \ \ deg_x+deg_y \
 \subsubsection{求和公式}
 
 \begin{enumerate}
-\item
-  $\sum_{k=1}^{n}(2k-1)^2 = \frac{n(4n^2-1)}{3}	$
-\item
-  $\sum_{k=1}^{n}k^3 = [\frac{n(n+1)}{2}]^2	$
-\item
-  $\sum_{k=1}^{n}(2k-1)^3 = n^2(2n^2-1)	$
-\item
-  $\sum_{k=1}^{n}k^4 = \frac{n(n+1)(2n+1)(3n^2+3n-1)}{30}  $
-\item
-  $\sum_{k=1}^{n}k^5 = \frac{n^2(n+1)^2(2n^2+2n-1)}{12}	$
-\item
-  $\sum_{k=1}^{n}k(k+1) = \frac{n(n+1)(n+2)}{3}	$
-\item
-  $\sum_{k=1}^{n}k(k+1)(k+2) = \frac{n(n+1)(n+2)(n+3)}{4} $
-\item
-  $\sum_{k=1}^{n}k(k+1)(k+2)(k+3) = \frac{n(n+1)(n+2)(n+3)(n+4)}{5} $
+	\item $\sum_{k=1}^{n}(2k-1)^2 = \frac{n(4n^2-1)}{3}	$
+	\item $\sum_{k=1}^{n}k^3 = [\frac{n(n+1)}{2}]^2	$
+	\item $\sum_{k=1}^{n}(2k-1)^3 = n^2(2n^2-1)	$
+	\item $\sum_{k=1}^{n}k^4 = \frac{n(n+1)(2n+1)(3n^2+3n-1)}{30}  $
+	\item $\sum_{k=1}^{n}k^5 = \frac{n^2(n+1)^2(2n^2+2n-1)}{12}	$
+	\item $\sum_{k=1}^{n}k(k+1) = \frac{n(n+1)(n+2)}{3}	$
+	\item $\sum_{k=1}^{n}k(k+1)(k+2) = \frac{n(n+1)(n+2)(n+3)}{4} $
+	\item $\sum_{k=1}^{n}k(k+1)(k+2)(k+3) = \frac{n(n+1)(n+2)(n+3)(n+4)}{5} $
 \end{enumerate}
 
 \subsubsection{斐波那契数列}
@@ -452,21 +444,150 @@ ORE性质：$$\forall x,y \in V \wedge (x,y) \notin E \ \ s.t. \ \ deg_x+deg_y \
 
 \subsubsection{四边形}
 
+$D_1, D_2$为对角线，$M$对角线中点连线，$A$为对角线夹角，$p$为半周长
+\begin{enumerate}
+	\item $a^2+b^2+c^2+d^2=D_1^2+D_2^2+4M^2$
+	\item $S=\frac{1}{2}D_1D_2sinA$
+	\item 对于圆内接四边形
+		$$ac+bd=D_1D_2$$
+	\item 对于圆内接四边形
+		$$S=\sqrt{(p-a)(p-b)(p-c)(p-d)}$$
+\end{enumerate}
+
 \subsubsection{正$n$边形}
+
+$R$为外接圆半径，$r$为内切圆半径
+\begin{enumerate}
+	\item 中心角
+		$$A=\frac{2\pi}{n}$$
+	\item 内角
+		$$C=\frac{n-2}{n}\pi$$
+	\item 边长
+		$$a=2\sqrt{R^2-r^2}=2R \cdot sin\frac{A}{2}=2r \cdot tan\frac{A}{2}$$
+	\item 面积
+		$$S=\frac{nar}{2}=nr^2 \cdot tan\frac{A}{2}=\frac{nR^2}{2} \cdot sinA=\frac{na^2}{4 \cdot tan\frac{A}{2}}$$
+\end{enumerate}
 
 \subsubsection{圆}
 
+\begin{enumerate}
+	\item 弧长
+		$$l=rA$$
+	\item 弦长
+		$$a=2\sqrt{2hr-h^2}=2r\cdot sin\frac{A}{2}$$
+	\item 弓形高
+		$$h=r-\sqrt{r^2-\frac{a^2}{4}}=r(1-cos\frac{A}{2})=\frac{1}{2} \cdot arctan\frac{A}{4}$$
+	\item 扇形面积
+		$$S_1=\frac{rl}{2}=\frac{r^2A}{2}$$
+	\item 弓形面积
+		$$S_2=\frac{rl-a(r-h)}{2}=\frac{r^2}{2}(A-sinA)$$
+\end{enumerate}
+
 \subsubsection{棱柱}
+
+\begin{enumerate}
+	\item 体积
+		$$V=Ah$$
+		$A$为底面积，$h$为高
+	\item 侧面积
+		$$S=lp$$
+		$l$为棱长，$p$为直截面周长
+	\item 全面积
+		$$T=S+2A$$
+\end{enumerate}
 
 \subsubsection{棱锥}
 
+\begin{enumerate}
+	\item 体积
+		$$V=Ah$$
+		$A$为底面积，$h$为高
+	\item 正棱锥侧面积
+		$$S=lp$$
+		$l$为棱长，$p$为直截面周长
+	\item 正棱锥全面积
+		$$T=S+2A$$
+\end{enumerate}
+
 \subsubsection{棱台}
+
+\begin{enumerate}
+	\item 体积
+		$$V=(A_1+A_2+\sqrt{A_1A_2}) \cdot \frac{h}{3}$$
+		$A_1,A_2$为上下底面积，$h$为高
+	\item 正棱台侧面积
+		$$S=\frac{p_1+p_2}{2}l$$
+		$p_1,p_2$为上下底面周长，$l$为斜高
+	\item 正棱台全面积
+		$$T=S+A_1+A_2$$
+\end{enumerate}
 
 \subsubsection{圆柱}
 
+\begin{enumerate}
+	\item 侧面积
+		$$S=2\pi rh$$
+	\item 全面积
+		$$T=2\pi r(h+r)$$
+	\item 体积
+		$$V=\pi r^2h$$
+\end{enumerate}
+
 \subsubsection{圆锥}
 
+\begin{enumerate}
+	\item 母线
+		$$l=\sqrt{h^2+r^2}$$
+	\item 侧面积
+		$$S=\pi rl$$
+	\item 全面积
+		$$T=\pi r(l+r)$$
+	\item 体积
+		$$V=\frac{\pi}{3} r^2h$$
+\end{enumerate}
+
 \subsubsection{圆台}
+
+\begin{enumerate}
+	\item 母线
+		$$l=\sqrt{h^2+(r_1-r_2)^2}$$
+	\item 侧面积
+		$$S=\pi(r_1+r_2)l$$
+	\item 全面积
+		$$T=\pi r_1(l+r_1)+\pi r_2(l+r_2)$$
+	\item 体积
+		$$V=\frac{\pi}{3}(r_1^2+r_2^2+r_1r_2)h$$
+\end{enumerate}
+
+\subsubsection{球}
+
+\begin{enumerate}
+	\item 全面积
+		$$T=4\pi r^2$$
+	\item 体积
+		$$V=\frac{4}{3}\pi r^3$$
+\end{enumerate}
+
+\subsubsection{球台}
+
+\begin{enumerate}
+	\item 侧面积
+		$$S=2\pi rh$$
+	\item 全面积
+		$$T=\pi(2rh+r_1^2+r_2^2)$$
+	\item 体积
+		$$V=\frac{\pi h[3(r_1^2+r_2^2)+h^2]}{6}$$
+\end{enumerate}
+
+\subsubsection{球扇形}
+
+\begin{enumerate}
+	\item 全面积
+		$$T=\pi r(2h+r_0)$$
+		$h$为球冠高，$r_0$为球冠底面半径
+	\item 体积
+		$$V=\frac{2}{3}\pi r^2h$$
+\end{enumerate}
 
 \subsection{常用数表}
 
