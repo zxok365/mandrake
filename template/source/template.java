@@ -9,7 +9,7 @@ public class Main {
         InputReader in = new InputReader(inputStream);
         PrintWriter out = new PrintWriter(outputStream);
         Task solver = new Task();
-        solver.solve(1, in, out);
+        solver.solve(0, in, out);
         out.close();
     }
 }

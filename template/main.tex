@@ -19,6 +19,10 @@
     \inputminted[mathescape]{cpp}{source/#1}
 }
 
+\newcommand{\javacode}[1]{
+    \inputminted[mathescape]{java}{source/#1}
+}
+
 \title{代码库}
 \author{上海交通大学}
 \date{\today}
@@ -35,18 +39,25 @@
 
 \subsection{快速求逆元}
 
-返回结果：$$x^{-1}(mod)$$\\
+返回结果：$$x^{-1}(mod)$$
 \indent 使用条件：$x \in [0, mod)$并且$x$与$mod$互质。
 
 \cppcode{number-theory/inverse.cpp}
 
 \subsection{扩展欧几里德算法}
 
-%\cppcode{number-theory/extended-euclid.cpp}
+返回结果：$$ax+by=gcd(a,b)$$
+\indent 时间复杂度：$O(nlogn)$
+
+\cppcode{number-theory/extended-euclid.cpp}
 
 \subsection{中国剩余定理}
 
-%\cppcode{number-theory/chinese-remainder-theorem.cpp}
+返回结果：$$x \equiv r_i (mod \ p_i) \ (0 \leq i < n)$$
+\indent 使用条件：$p_i$无需两两互质\\
+\indent 时间复杂度：$O(nlogn)$
+
+\cppcode{number-theory/chinese-remainder-theorem.cpp}
 
 \subsection{Miller Rabin 素数测试}
 
@@ -72,7 +83,7 @@
 
 \subsection{直线下整点个数}
 
-返回结果：$$\sum_{0 \leq i < n} \lfloor \frac{a + b \cdot i}{m} \rfloor$$\\
+返回结果：$$\sum_{0 \leq i < n} \lfloor \frac{a + b \cdot i}{m} \rfloor$$
 \indent 使用条件：$n, m > 0$，$a, b \geq 0$\\
 \indent 时间复杂度：$O(n log n)$
 
@@ -159,9 +170,13 @@
 
 \subsubsection{Hungary算法}
 
+时间复杂度：$O(V \cdot E)$
+
 \cppcode{graph-theory/maximum-matching-hungary.cpp}
 
 \subsubsection{Hopcroft Karp算法}
+
+时间复杂度：$O(\sqrt{V} \cdot E)$
 
 \cppcode{graph-theory/maximum-matching-hopcroft-karp.cpp}
 
@@ -169,11 +184,15 @@
 
 \subsubsection{KM算法}
 
+时间复杂度：$O(V^3)$
+
 \cppcode{graph-theory/maximum-weight-matching.cpp}
 
 \subsubsection{扩展KM算法}
 
 \subsection{最大流}
+
+时间复杂度：$O(V^2 \cdot E)$
 
 \cppcode{graph-theory/maximum-flow.cpp}
 
@@ -181,9 +200,13 @@
 
 \subsubsection{稀疏图}
 
+时间复杂度：$O(V \cdot E^2)$
+
 \cppcode{graph-theory/minimum-cost-flow-spfa.cpp}
 
 \subsubsection{稠密图}
+
+时间复杂度：$O(V \cdot E^2)$
 
 \cppcode{graph-theory/minimum-cost-flow-zkw.cpp}
 
@@ -218,7 +241,7 @@
 
 \subsection{哈密尔顿回路（ORE性质的图）}
 
-ORE性质：$$\forall x,y \in V \wedge (x,y) \notin E \ \ s.t. \ \ deg_x+deg_y \geq n$$\\
+ORE性质：$$\forall x,y \in V \wedge (x,y) \notin E \ \ s.t. \ \ deg_x+deg_y \geq n$$
 \indent 返回结果：从顶点$1$出发的一个哈密尔顿回路\\
 \indent 使用条件：$n \geq 3$
 
@@ -269,6 +292,8 @@ ORE性质：$$\forall x,y \in V \wedge (x,y) \notin E \ \ s.t. \ \ deg_x+deg_y \
 \subsubsection{点类}
 
 \subsubsection{凸包}
+
+\cppcode{computational-geometry/convex-hull.cpp}
 
 \subsubsection{半平面交}
 
@@ -332,15 +357,90 @@ ORE性质：$$\forall x,y \in V \wedge (x,y) \notin E \ \ s.t. \ \ deg_x+deg_y \
 
 \cppcode{miscellany/what-day-is-today.cpp}
 
+\subsection{动态规划}
+
+\subsection{搜索}
+
+\subsubsection{Dancing Links X}
+
+\section{Java}
+
+\subsection{基础模板}
+
+\javacode{template.java}
+
+\subsection{BigInteger}
+
+\subsection{BigDecimal}
+
 \section{数学}
 
 \subsection{常用积分表}
 
 \subsection{常用数学公式}
 
+\subsubsection{求和公式}
+
+\begin{enumerate}
+\item
+  $\sum_{k=1}^{n}(2k-1)^2 = \frac{n(4n^2-1)}{3}	$
+\item
+  $\sum_{k=1}^{n}k^3 = [\frac{n(n+1)}{2}]^2	$
+\item
+  $\sum_{k=1}^{n}(2k-1)^3 = n^2(2n^2-1)	$
+\item
+  $\sum_{k=1}^{n}k^4 = \frac{n(n+1)(2n+1)(3n^2+3n-1)}{30}  $
+\item
+  $\sum_{k=1}^{n}k^5 = \frac{n^2(n+1)^2(2n^2+2n-1)}{12}	$
+\item
+  $\sum_{k=1}^{n}k(k+1) = \frac{n(n+1)(n+2)}{3}	$
+\item
+  $\sum_{k=1}^{n}k(k+1)(k+2) = \frac{n(n+1)(n+2)(n+3)}{4} $
+\item
+  $\sum_{k=1}^{n}k(k+1)(k+2)(k+3) = \frac{n(n+1)(n+2)(n+3)(n+4)}{5} $
+\end{enumerate}
+
+\subsubsection{斐波那契数列}
+
+\begin{enumerate}
+	\item $fib_0=0, fib_1=1, fib_n=fib_{n-1}+fib_{n-2}$
+	\item $fib_{n+2} \cdot fib_n-fib_{n+1}^2=(-1)^{n+1}$
+	\item $fib_{-n}=(-1)^{n-1}fib_n$
+	\item $fib_{n+k}=fib_k \cdot fib_{n+1}+fib_{k-1} \cdot fib_n$
+	\item $gcd(fib_m, fib_n)=fib_{gcd(m, n)}$
+	\item $fib_m|fib_n^2\Leftrightarrow nfib_n|m$
+\end{enumerate}
+
+\subsubsection{错排公式}
+
+\begin{enumerate}
+	\item $D_n = (n-1)(D_{n-2}-D_{n-1})$
+	\item $D_n = n! \cdot (1-\frac{1}{1!}+\frac{1}{2!}-\frac{1}{3!}+\ldots+\frac{(-1)^n}{n!})$
+\end{enumerate}
+
 \subsection{平面几何公式}
 
 \subsubsection{三角形}
+
+\begin{enumerate}
+	\item 半周长
+		$$p=\frac{a+b+c}{2}$$
+	\item 面积
+		$$S=\frac{a \cdot H_a}{2}=\frac{ab \cdot sinC}{2}=\sqrt{p(p-a)(p-b)(p-c)}$$
+	\item 中线
+		$$M_a=\frac{\sqrt{2(b^2+c^2)-a^2}}{2}=\frac{\sqrt{b^2+c^2+2bc \cdot cosA}}{2}$$
+	\item 角平分线 
+		$$T_a=\frac{\sqrt{bc \cdot [(b+c)^2-a^2]}}{b+c}=\frac{2bc}{b+c}cos\frac{A}{2}$$
+	\item 高线
+		$$H_a=bsinC=csinB=\sqrt{b^2-(\frac{a^2+b^2-c^2}{2a})^2}$$
+	\item 内切圆半径
+		\begin{align*}
+			r&=\frac{S}{p}=\frac{arcsin\frac{B}{2} \cdot sin\frac{C}{2}}{sin\frac{B+C}{2}}=4R \cdot sin\frac{A}{2}sin\frac{B}{2}sin\frac{C}{2}\\
+			&=\sqrt{\frac{(p-a)(p-b)(p-c)}{p}}=p \cdot tan\frac{A}{2}tan\frac{B}{2}tan\frac{C}{2}
+		\end{align*}
+	\item 外接圆半径
+		$$R=\frac{abc}{4S}=\frac{a}{2sinA}=\frac{b}{2sinB}=\frac{c}{2sinC}$$
+\end{enumerate}
 
 \subsubsection{四边形}
 
