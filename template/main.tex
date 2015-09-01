@@ -35,7 +35,10 @@
 
 \subsection{快速求逆元}
 
-%\cppcode{number-theory/inverse.cpp}
+返回结果：$$x^{-1}(mod)$$\\
+\indent 使用条件：$x \in [0, mod)$并且$x$与$mod$互质。
+
+\cppcode{number-theory/inverse.cpp}
 
 \subsection{扩展欧几里德算法}
 
@@ -50,6 +53,8 @@
 \cppcode{number-theory/miller-rabin.cpp}
 
 \subsection{Pollard Rho 大数分解}
+
+时间复杂度：$O(n^{1/4})$
 
 \cppcode{number-theory/pollard-rho.cpp}
 
@@ -67,6 +72,10 @@
 
 \subsection{直线下整点个数}
 
+返回结果：$$\sum_{0 \leq i < n} \lfloor \frac{a + b \cdot i}{m} \rfloor$$\\
+\indent 使用条件：$n, m > 0$，$a, b \geq 0$\\
+\indent 时间复杂度：$O(n log n)$
+
 \cppcode{number-theory/lattice-count.cpp}
 
 \section{数值}
@@ -75,9 +84,14 @@
 
 \subsection{快速傅立叶变换}
 
+返回结果：$$c_i=\sum_{0 \leq j \leq i} a_j \cdot b_{i-j} \ (0 \leq i < n)$$
+\indent 时间复杂度：$O(n log n)$
+
 \cppcode{numerical-algorithm/fast-fourier-transform.cpp}
 
 \subsection{单纯形法求解线性规划}
+
+返回结果：$$max\{c_{1 \times m} \cdot x_{m \times 1} \ | \ x_{m \times 1} \geq 0_{m \times 1}, a_{n \times m} \cdot x_{m \times 1} \leq b_{n \times 1}\}$$
 
 \cppcode{numerical-algorithm/linear-programming-simplex.cpp}
 
@@ -175,15 +189,22 @@
 
 \subsection{一般图最大匹配}
 
+时间复杂度：$O(V^3)$
+
 \cppcode{graph-theory/maximum-matching-blossom.cpp}
 
 \subsection{无向图全局最小割}
+
+时间复杂度：$O(V^3)$\\
+\indent 注意事项：处理重边时，应该对边权累加
 
 \cppcode{graph-theory/minimum-cut-stoer-wagner.cpp}
 
 \subsection{最小树形图}
 
 \subsection{有根树的同构}
+
+时间复杂度：$O(V log V)$
 
 \cppcode{graph-theory/rooted-tree-isomorphism.cpp}
 
@@ -196,6 +217,10 @@
 \subsubsection{弦图的团数}
 
 \subsection{哈密尔顿回路（ORE性质的图）}
+
+ORE性质：$$\forall x,y \in V \wedge (x,y) \notin E \ \ s.t. \ \ deg_x+deg_y \geq n$$\\
+\indent 返回结果：从顶点$1$出发的一个哈密尔顿回路\\
+\indent 使用条件：$n \geq 3$
 
 \cppcode{graph-theory/hamiltonian-circuit-ore.cpp}
 
