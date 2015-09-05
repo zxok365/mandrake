@@ -5,22 +5,22 @@ public:
 
     Node(Node *left, Node *right, int value) : left(left), right(right), value(value) {}
 
-    Node* modify(int l, int r, int ql, int qr, int value);
+    Node* modify(int l, int r, int ql, int qr, int delta);
     int query(int l, int r, int qx);
 };
 
 Node* null;
 
-Node* Node::modify(int l, int r, int ql, int qr, int value) {
+Node* Node::modify(int l, int r, int ql, int qr, int delta) {
     if (qr < l || r < ql) {
         return this;
     }
     if (ql <= l && r <= qr) {
-        return new Node(this->left, this->right, this->value + value);
+        return new Node(this->left, this->right, this->value + delta);
     }
     int mid = l + r >> 1;
-    return new Node(this->left->modify(l, mid, ql, qr, value),
-                    this->right->modify(mid + 1, r, ql, qr, value),
+    return new Node(this->left->modify(l, mid, ql, qr, delta),
+                    this->right->modify(mid + 1, r, ql, qr, delta),
                     this->value);
 }
 
