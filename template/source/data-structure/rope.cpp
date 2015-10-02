@@ -111,7 +111,7 @@ public:
         root = merge(part.first, split(part.second, right - left).second);
     }
     
-    std::string substring(int left, int right) {
+    std::string substr(int left, int right) {
         if (left < 0 || left >= size() ||
             right < 1 || right > size()) {
             throw "Out of range";
