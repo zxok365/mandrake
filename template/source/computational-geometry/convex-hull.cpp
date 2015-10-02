@@ -1,7 +1,4 @@
 std::vector<Point> convex_hull(std::vector<Point> point) {
-    if ((int)point.size() < 3) {
-        return point;
-    }
     std::sort(point.begin(), point.end());
     std::vector<Point> convex;
     {
@@ -9,7 +6,7 @@ std::vector<Point> convex_hull(std::vector<Point> point) {
         for (int i = 0; i < (int)point.size(); ++i) {
             while ((int)stack.size() >= 2 &&
                     sgn(det(stack[(int)stack.size() - 2], stack.back(), point[i])) <= 0) {
-                stack.pop_back());
+                stack.pop_back();
             }
             stack.push_back(point[i]);
         }
@@ -22,7 +19,7 @@ std::vector<Point> convex_hull(std::vector<Point> point) {
         for (int i = (int)point.size() - 1; i >= 0; --i) {
             while ((int)stack.size() >= 2 &&
                     sgn(det(stack[(int)stack.size() - 2], stack.back(), point[i])) <= 0) {
-                stack.pop_back());
+                stack.pop_back();
             }
             stack.push_back(point[i]);
         }
