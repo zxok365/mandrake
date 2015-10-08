@@ -66,7 +66,8 @@ void build(char *text, int n) {
     }
     for (int step = 1; (1 << step) <= n; ++step) {
         for (int i = 1; i + (1 << step) <= n; ++i) {
-            value[i][step] = std::min(value[i][step - 1], value[i + (1 << step - 1)][step - 1]);
+            value[i][step] = std::min(value[i][step - 1],
+                                      value[i + (1 << step - 1)][step - 1]);
         }
     }
 }

@@ -1,4 +1,5 @@
-long long solve(const long long &n, const long long &a, const long long &b, const long long &m) {
+long long solve(const long long &n, const long long &a,
+                const long long &b, const long long &m) {
     if (b == 0) {
         return n * (a / m);
     }

@@ -1,4 +1,5 @@
-bool solve(int n, std::pair<long long, long long> input[], std::pair<long long, long long> &output) {
+bool solve(int n, std::pair<long long, long long> input[],
+                  std::pair<long long, long long> &output) {
     output = std::make_pair(1, 1);
     for (int i = 0; i < n; ++i) {
         long long number, useless;

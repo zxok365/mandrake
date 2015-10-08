@@ -6,7 +6,8 @@ private:
         int size;
         char key;
         
-        Node(char key = 0, Node *left = NULL, Node *right = NULL) : key(key), left(left), right(right) {
+        Node(char key = 0, Node *left = NULL, Node *right = NULL)
+               : key(key), left(left), right(right) {
             update();
         }
         
@@ -15,7 +16,8 @@ private:
         }
         
         std::string to_string() {
-            return (left ? left->to_string() : "") + key + (right ? right->to_string() : "");
+            return (left ? left->to_string() : "") + key
+                 + (right ? right->to_string() : "");
         }
     };
     
@@ -48,10 +50,12 @@ private:
             return std::make_pair<Node*, Node*>(x, NULL);
         }
         if (x->left && size <= x->left->size) {
-            std::pair<Node*, Node*> part = split(x->left, size);
+            std::pair<Node*, Node*> part =
+                split(x->left, size);
             return std::make_pair(part.first, new Node(x->key, part.second, x->right));
         } else {
-            std::pair<Node*, Node*> part = split(x->right, size - (x->left ? x->left->size : 0) - 1);
+            std::pair<Node*, Node*> part =
+                split(x->right, size - (x->left ? x->left->size : 0) - 1);
             return std::make_pair(new Node(x->key, x->left, part.first), part.second);
         }
     }
@@ -61,7 +65,9 @@ private:
             return NULL;
         }
         int mid = left + right >> 1;
-        return new Node(text[mid], build(text, left, mid - 1), build(text, mid + 1, right));
+        return new Node(text[mid],
+                        build(text, left, mid - 1),
+                        build(text, mid + 1, right));
     }
 
 public:
@@ -96,7 +102,8 @@ public:
             throw "Out of range";
         }
         std::pair<Node*, Node*> part = split(root, pos);
-        root = merge(merge(part.first, build(text, 0, (int)text.length() - 1)), part.second);
+        root = merge(merge(part.first, build(text, 0, (int)text.length() - 1)),
+                     part.second);
     }
 
     void erase(int left, int right) {
@@ -132,6 +139,8 @@ public:
             return;
         }
         std::pair<Node*, Node*> part = split(root, pos);
-        root = merge(merge(part.first, split(split(root, left).second, right - left).first), part.second);
+        root = merge(merge(part.first,
+                           split(split(root, left).second, right - left).first),
+                     part.second);
     }
 };

@@ -1,19 +1,31 @@
+%文档类型
 \documentclass[a4paper]{article}
 
+%引用包裹
+\usepackage{bm}
+\usepackage{cmap}
+\usepackage{ctex}
+\usepackage{cite}
+\usepackage{color}
+\usepackage{float}
+\usepackage{xeCJK}
+\usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{cmap}
+\usepackage{setspace}
 \usepackage{geometry}
 \usepackage{hyperref}
+\usepackage{enumerate}
 \usepackage{indentfirst}
-\usepackage{xeCJK}
-\usepackage{minted}
+\usepackage[cache=false]{minted}
 
+%代码高亮
 \geometry{margin=1in}
 
-\setmainfont{Microsoft YaHei UI}
-\setCJKmainfont[BoldFont={Microsoft YaHei UI}]{Microsoft YaHei UI}
-\setCJKmonofont{Microsoft YaHei UI}
+%字体设置
+\setmainfont{PingFangSC-Light}
+\setCJKmonofont{PingFangSC-Light}
+\setCJKmainfont[BoldFont={PingFangSC-Regular}]{PingFangSC-Light}
 
 \newcommand{\cppcode}[1]{
     \inputminted[mathescape]{cpp}{source/#1}
@@ -163,7 +175,7 @@
 
 \subsubsection{Link Cut Tree}
 
-\subsubsection{AAA Tree}
+%\subsubsection{AAA Tree}
 
 \subsection{k-d树}
 
@@ -223,7 +235,8 @@
 
 \subsubsection{稠密图}
 
-时间复杂度：$O(V \cdot E^2)$
+使用条件：费用非负。\\
+\indent 时间复杂度：$O(V \cdot E^2)$
 
 \cppcode{graph-theory/minimum-cost-flow-zkw.cpp}
 
@@ -336,7 +349,7 @@ ORE性质：$$\forall x,y \in V \wedge (x,y) \notin E \ \ s.t. \ \ deg_x+deg_y \
 
 \subsubsection{直线与凸包的交点}
 
-\subsubsection{凸多边形的交集}
+%\subsubsection{凸多边形的交集}
 
 \subsubsection{凸多边形内的最大圆}
 
@@ -362,13 +375,13 @@ ORE性质：$$\forall x,y \in V \wedge (x,y) \notin E \ \ s.t. \ \ deg_x+deg_y \
 
 \subsubsection{三角形的垂心}
 
-\subsection{黑暗科技}
+%\subsection{黑暗科技}
 
-\subsubsection{平面图形的转动惯量}
+%\subsubsection{平面图形的转动惯量}
 
-\subsubsection{平面区域处理}
+%\subsubsection{平面区域处理}
 
-\subsubsection{Vonoroi图}
+%\subsubsection{Vonoroi图}
 
 \section{其他}
 
@@ -376,7 +389,7 @@ ORE性质：$$\forall x,y \in V \wedge (x,y) \notin E \ \ s.t. \ \ deg_x+deg_y \
 
 \cppcode{miscellany/what-day-is-today.cpp}
 
-\subsection{动态规划}
+%\subsection{动态规划}
 
 \subsection{搜索}
 
@@ -388,13 +401,13 @@ ORE性质：$$\forall x,y \in V \wedge (x,y) \notin E \ \ s.t. \ \ deg_x+deg_y \
 
 \javacode{template.java}
 
-\subsection{BigInteger}
+%\subsection{BigInteger}
 
-\subsection{BigDecimal}
+%\subsection{BigDecimal}
 
 \section{数学}
 
-\subsection{常用积分表}
+%\subsection{常用积分表}
 
 \subsection{常用数学公式}
 
@@ -600,8 +613,8 @@ $R$为外接圆半径，$r$为内切圆半径
 		$$V=\frac{2}{3}\pi r^2h$$
 \end{enumerate}
 
-\subsection{常用数表}
+%\subsection{常用数表}
 
-\subsubsection{梅森数}
+%\subsubsection{梅森数}
 
 \end{document}

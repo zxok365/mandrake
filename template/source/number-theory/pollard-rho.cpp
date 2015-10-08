@@ -23,7 +23,8 @@ void factorize(const long long &number, std::vector<long long> &divisor) {
             divisor.push_back(number);
         } else {
             long long factor = number;
-            for (; factor >= number; factor = pollard_rho(number, rand() % (number - 1) + 1));
+            for (; factor >= number;
+                   factor = pollard_rho(number, rand() % (number - 1) + 1));
             factorize(number / factor, divisor);
             factorize(factor, divisor);
         }

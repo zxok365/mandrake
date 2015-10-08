@@ -56,7 +56,9 @@ void splay(Node *x, Node *target = null) {
         if (x->father->father == target) {
             rotate(x);
         } else {
-            x->side() == x->father->side() ? (rotate(x->father), rotate(x)) : (rotate(x), rotate(x));
+            x->side() == x->father->side() 
+            ? (rotate(x->father), rotate(x))
+            : (rotate(x), rotate(x));
         }
     }
     x->update();

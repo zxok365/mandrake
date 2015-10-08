@@ -1,5 +1,5 @@
 std::vector<double> solve(const std::vector<std::vector<double> > &a, 
-                        const std::vector<double> &b, const std::vector<double> &c) {
+                          const std::vector<double> &b, const std::vector<double> &c) {
     int n = (int)a.size(), m = (int)a[0].size() + 1;
     std::vector<std::vector<double> > value(n + 2, std::vector<double>(m + 1));
     std::vector<int> index(n + m);
@@ -55,8 +55,8 @@ std::vector<double> solve(const std::vector<std::vector<double> > &a,
         for (int i = 0; i < n; ++i) {
             if (value[i][s] < -eps) {
                 if (r < 0
-                    || (number = value[r][m] / value[r][s] - value[i][m] / value[i][s]) < -eps
-                    || number < eps && index[r + m] > index[i + m]) {
+                || (number = value[r][m] / value[r][s] - value[i][m] / value[i][s]) < -eps
+                || number < eps && index[r + m] > index[i + m]) {
                      r = i;
                 }
             }

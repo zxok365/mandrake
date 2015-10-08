@@ -21,7 +21,8 @@ int solve(int n) {
             if (i == n - 1) {
                 answer = std::min(answer, dist[node[max]]);
                 for (int k = 0; k < n; ++k) {
-                    graph[node[k]][node[prev]] = (graph[node[prev]][node[k]] += graph[node[k]][node[max]]);
+                    graph[node[k]][node[prev]] =
+                        (graph[node[prev]][node[k]] += graph[node[k]][node[max]]);
                 }
                 node[max] = node[--n];
             }
