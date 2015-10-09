@@ -1,7 +1,7 @@
 long long norm(const long long &x) {
-	//	For manhattan distance
+    //    For manhattan distance
     return std::abs(x);
-    //	For euclid distance
+    //    For euclid distance
     return x * x;
 }
   
@@ -43,9 +43,9 @@ struct Rectangle {
     long long dist(const Point &p) {
         long long result = 0;
         for (int i = 0; i < 2; ++i) {
-        	//	For minimum distance
+            //    For minimum distance
             result += norm(std::min(std::max(p[i], min[i]), max[i]) - p[i]);
-            //	For maximum distance
+            //    For maximum distance
             result += std::max(norm(max[i] - p[i]), norm(min[i] - p[i]));
         }
         return result;
@@ -63,7 +63,7 @@ struct Node {
         rectangle.add(p);
         child[0] = child[1] = 0;
     }
-} tree[N];
+} tree[N << 1];
   
 int size, pivot;
  
@@ -75,24 +75,24 @@ bool compare(const Point &a, const Point &b) {
 }
   
 int build(int l, int r, int type = 1) {
-	pivot = type;
-	if (l >= r) {
-		return 0;
-	}
-	int x = ++size;
-	int mid = l + r >> 1;
-	std::nth_element(point + l, point + mid, point + r, compare);
-	tree[x].reset(point[mid]);
-	for (int i = l; i < r; ++i) {
-		tree[x].rectangle.add(point[i]);
-	}
+    pivot = type;
+    if (l >= r) {
+        return 0;
+    }
+    int x = ++size;
+    int mid = l + r >> 1;
+    std::nth_element(point + l, point + mid, point + r, compare);
+    tree[x].reset(point[mid]);
+    for (int i = l; i < r; ++i) {
+        tree[x].rectangle.add(point[i]);
+    }
     tree[x].child[0] = build(l, mid, type ^ 1);
     tree[x].child[1] = build(mid + 1, r, type ^ 1);
     return x;
 }
   
 int insert(int x, const Point &p, int type = 1) {
-	pivot = type;
+    pivot = type;
     if (x == 0) {
         tree[++size].reset(p);
         return size;
@@ -106,13 +106,14 @@ int insert(int x, const Point &p, int type = 1) {
     return x;
 }
 
-//	For minimum distance
+//    For minimum distance
 void query(int x, const Point &p, std::pair<long long, int> &answer, int type = 1) {
     pivot = type;
     if (x == 0 || tree[x].rectangle.dist(p) > answer.first) {
         return;
     }
-    answer = std::min(answer, std::make_pair(dist(tree[x].seperator, p), tree[x].seperator.id));
+    answer = std::min(answer,
+             std::make_pair(dist(tree[x].seperator, p), tree[x].seperator.id));
     if (compare(p, tree[x].seperator)) {
         query(tree[x].child[0], p, answer, type ^ 1);
         query(tree[x].child[1], p, answer, type ^ 1);
@@ -125,55 +126,20 @@ void query(int x, const Point &p, std::pair<long long, int> &answer, int type = 
 std::priority_queue<std::pair<long long, int> > answer;
 
 void query(int x, const Point &p, int k, int type = 1) {
-	pivot = type;
-    if (x == 0 || (int)answer.size() == k && tree[x].rectangle.dist(p) > answer.top().first) {
+    pivot = type;
+    if (x == 0 ||
+        (int)answer.size() == k && tree[x].rectangle.dist(p) > answer.top().first) {
         return;
     }
     answer.push(std::make_pair(dist(tree[x].seperator, p), tree[x].seperator.id));
-	if ((int)answer.size() > k) {
-		answer.pop();
-	}
+    if ((int)answer.size() > k) {
+        answer.pop();
+    }
     if (compare(p, tree[x].seperator)) {
         query(tree[x].child[0], p, k, type ^ 1);
         query(tree[x].child[1], p, k, type ^ 1);
     } else {
         query(tree[x].child[1], p, k, type ^ 1);
         query(tree[x].child[0], p, k, type ^ 1);
-    }
-}
-
-//	For maximum distance
-void query(int x, const Point &p, std::pair<long long, int> &answer, int type = 1) {
-    pivot = type;
-    if (x == 0 || tree[x].rectangle.dist(p) < answer.first) {
-        return;
-    }
-    answer = std::max(answer, std::make_pair(dist(tree[x].seperator, p), tree[x].seperator.id));
-    if (compare(p, tree[x].seperator)) {
-        query(tree[x].child[1], p, answer, type ^ 1);
-        query(tree[x].child[0], p, answer, type ^ 1);
-    } else {
-        query(tree[x].child[0], p, answer, type ^ 1);
-        query(tree[x].child[1], p, answer, type ^ 1);
-    }
-}
-
-std::priority_queue<std::pair<long long, int> > answer;
-
-void query(int x, const Point &p, int k, int type = 1) {
-	pivot = type;
-    if (x == 0 || (int)answer.size() == k && tree[x].rectangle.dist(p) < -answer.top().first) {
-        return;
-    }
-    answer.push(std::make_pair(-dist(tree[x].seperator, p), tree[x].seperator.id));
-	if ((int)answer.size() > k) {
-		answer.pop();
-	}
-    if (compare(p, tree[x].seperator)) {
-        query(tree[x].child[1], p, k, type ^ 1);
-        query(tree[x].child[0], p, k, type ^ 1);
-    } else {
-        query(tree[x].child[0], p, k, type ^ 1);
-        query(tree[x].child[1], p, k, type ^ 1);
     }
 }
