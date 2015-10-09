@@ -52,14 +52,14 @@
 \subsection{快速求逆元}
 
 返回结果：$$x^{-1}(mod)$$
-\indent 使用条件：$x \in [0, mod)$并且$x$与$mod$互质。
+\indent 使用条件：$x \in [0, mod)$并且$x$与$mod$互质
 
 \cppcode{number-theory/inverse.cpp}
 
 \subsection{扩展欧几里德算法}
 
 返回结果：$$ax+by=gcd(a,b)$$
-\indent 时间复杂度：$O(nlogn)$
+\indent 时间复杂度：$\mathcal{O}(nlogn)$
 
 \cppcode{number-theory/extended-euclid.cpp}
 
@@ -67,7 +67,7 @@
 
 返回结果：$$x \equiv r_i (mod \ p_i) \ (0 \leq i < n)$$
 \indent 使用条件：$p_i$无需两两互质\\
-\indent 时间复杂度：$O(nlogn)$
+\indent 时间复杂度：$\mathcal{O}(nlogn)$
 
 \cppcode{number-theory/chinese-remainder-theorem.cpp}
 
@@ -77,7 +77,7 @@
 
 \subsection{Pollard Rho 大数分解}
 
-时间复杂度：$O(n^{1/4})$
+时间复杂度：$\mathcal{O}(n^{1/4})$
 
 \cppcode{number-theory/pollard-rho.cpp}
 
@@ -85,7 +85,7 @@
 
 返回结果：$$c_i=\sum_{0 \leq j \leq i} a_j \cdot b_{i-j} (mod) \ (0 \leq i < n)$$
 \indent 使用说明：$magic$是$mod$的原根\\
-\indent 时间复杂度：$O(n log n)$
+\indent 时间复杂度：$\mathcal{O}(n log n)$
 
 \cppcode{number-theory/number-theoretic-transform.cpp}
 
@@ -97,13 +97,11 @@
 
 \subsection{佩尔方程求解}
 
-\subsection{牛顿迭代法}
-
 \subsection{直线下整点个数}
 
 返回结果：$$\sum_{0 \leq i < n} \lfloor \frac{a + b \cdot i}{m} \rfloor$$
 \indent 使用条件：$n, m > 0$，$a, b \geq 0$\\
-\indent 时间复杂度：$O(n log n)$
+\indent 时间复杂度：$\mathcal{O}(n log n)$
 
 \cppcode{number-theory/lattice-count.cpp}
 
@@ -114,7 +112,7 @@
 \subsection{快速傅立叶变换}
 
 返回结果：$$c_i=\sum_{0 \leq j \leq i} a_j \cdot b_{i-j} \ (0 \leq i < n)$$
-\indent 时间复杂度：$O(n log n)$
+\indent 时间复杂度：$\mathcal{O}(n log n)$
 
 \cppcode{numerical-algorithm/fast-fourier-transform.cpp}
 
@@ -127,6 +125,8 @@
 \subsection{自适应辛普森}
 
 \cppcode{numerical-algorithm/adaptive-simpson.cpp}
+
+\subsection{牛顿迭代法}
 
 \subsection{多项式方程求解}
 
@@ -199,13 +199,13 @@
 
 \subsubsection{Hungary算法}
 
-时间复杂度：$O(V \cdot E)$
+时间复杂度：$\mathcal{O}(V \cdot E)$
 
 \cppcode{graph-theory/maximum-matching-hungary.cpp}
 
 \subsubsection{Hopcroft Karp算法}
 
-时间复杂度：$O(\sqrt{V} \cdot E)$
+时间复杂度：$\mathcal{O}(\sqrt{V} \cdot E)$
 
 \cppcode{graph-theory/maximum-matching-hopcroft-karp.cpp}
 
@@ -213,7 +213,7 @@
 
 \subsubsection{KM算法}
 
-时间复杂度：$O(V^3)$
+时间复杂度：$\mathcal{O}(V^3)$
 
 \cppcode{graph-theory/maximum-weight-matching.cpp}
 
@@ -221,7 +221,7 @@
 
 \subsection{最大流}
 
-时间复杂度：$O(V^2 \cdot E)$
+时间复杂度：$\mathcal{O}(V^2 \cdot E)$
 
 \cppcode{graph-theory/maximum-flow.cpp}
 
@@ -229,26 +229,26 @@
 
 \subsubsection{稀疏图}
 
-时间复杂度：$O(V \cdot E^2)$
+时间复杂度：$\mathcal{O}(V \cdot E^2)$
 
 \cppcode{graph-theory/minimum-cost-flow-spfa.cpp}
 
 \subsubsection{稠密图}
 
-使用条件：费用非负。\\
-\indent 时间复杂度：$O(V \cdot E^2)$
+使用条件：费用非负\\
+\indent 时间复杂度：$\mathcal{O}(V \cdot E^2)$
 
 \cppcode{graph-theory/minimum-cost-flow-zkw.cpp}
 
 \subsection{一般图最大匹配}
 
-时间复杂度：$O(V^3)$
+时间复杂度：$\mathcal{O}(V^3)$
 
 \cppcode{graph-theory/maximum-matching-blossom.cpp}
 
 \subsection{无向图全局最小割}
 
-时间复杂度：$O(V^3)$\\
+时间复杂度：$\mathcal{O}(V^3)$\\
 \indent 注意事项：处理重边时，应该对边权累加
 
 \cppcode{graph-theory/minimum-cut-stoer-wagner.cpp}
@@ -257,7 +257,7 @@
 
 \subsection{有根树的同构}
 
-时间复杂度：$O(V log V)$
+时间复杂度：$\mathcal{O}(V log V)$
 
 \cppcode{graph-theory/rooted-tree-isomorphism.cpp}
 
@@ -327,6 +327,10 @@ ORE性质：$$\forall x,y \in V \wedge (x,y) \notin E \ \ s.t. \ \ deg_x+deg_y \
 
 \subsubsection{半平面交}
 
+\subsubsection{最近点对}
+
+\cppcode{computational-geometry/closest-pair-of-points.cpp}
+
 \subsection{三维基础}
 
 \subsubsection{点类}
@@ -389,7 +393,13 @@ ORE性质：$$\forall x,y \in V \wedge (x,y) \notin E \ \ s.t. \ \ deg_x+deg_y \
 
 \cppcode{miscellany/what-day-is-today.cpp}
 
-%\subsection{动态规划}
+\subsection{枚举大小为$k$的子集}
+
+使用条件：$k > 0$
+
+\cppcode{miscellany/subset-of-size-k.cpp}
+
+\subsection{环状最长公共子串}
 
 \subsection{搜索}
 
@@ -441,6 +451,35 @@ ORE性质：$$\forall x,y \in V \wedge (x,y) \notin E \ \ s.t. \ \ deg_x+deg_y \
 	\item $D_n = (n-1)(D_{n-2}-D_{n-1})$
 	\item $D_n = n! \cdot (1-\frac{1}{1!}+\frac{1}{2!}-\frac{1}{3!}+\ldots+\frac{(-1)^n}{n!})$
 \end{enumerate}
+
+\subsubsection{五边形数定理}
+
+设$p(n)$是$n$的拆分数，有$$p(n) = \sum_{k \in \mathbb{Z} \setminus \{0\}} (-1)^{k - 1} p\left(n - \frac{k(3k - 1)}{2}\right)$$
+
+\subsubsection{树的计数}
+
+\begin{enumerate}
+	\item 有根树计数：$n+1$个结点的有根树的个数为
+		$$a_{n+1} = \frac{\sum_{j=1}^{n}{j \cdot a_j \cdot{S_{n, j}}}}{n}$$
+	其中，
+		$$S_{n, j} = \sum_{i=1}^{n/j}{a_{n+1-ij}} = S_{n-j, j} + a_{n+1-j}$$
+	\item 无根树计数：当$n$为奇数时，$n$个结点的无根树的个数为
+		$$a_n-\sum_{i=1}^{n/2}{a_ia_{n-i}}$$
+	当$n$为偶数时，$n$个结点的无根树的个数为
+		$$a_n-\sum_{i=1}^{n/2}{a_ia_{n-i}}+\frac{1}{2}a_{\frac{n}{2}}(a_{\frac{n}{2}}+1)$$
+	\item $n$个结点的完全图的生成树个数为
+		$$n^{n-2}$$
+	\item 矩阵－树定理：图$G$由$n$个结点构成，设$\bm{A}[G]$为图$G$的邻接矩阵、$\bm{D}[G]$为图$G$的度数矩阵，则图$G$的不同生成树的个数为$\bm{C}[G] = \bm{D}[G] - \bm{A}[G]$的任意一个$n-1$阶主子式的行列式值。
+\end{enumerate}
+
+\subsubsection{牛顿恒等式}
+
+设$$\prod_{i = 1}^n{(x - x_i)} = a_n + a_{n - 1} x + \dots + a_1 x^{n - 1} + a_0 x^n$$
+$$p_k = \sum_{i = 1}^n{x_i^k}$$
+则$$a_0 p_k + a_1 p_{k - 1} + \cdots + a_{k - 1} p_1 + k a_k = 0$$
+
+特别地，对于$$|\bm{A} - \lambda \bm{E}| = (-1)^n(a_n + a_{n - 1} \lambda + \cdots + a_1 \lambda^{n - 1} + a_0 \lambda^n)$$
+有$$p_k = Tr(\bm{A}^k)$$
 
 \subsection{平面几何公式}
 
@@ -612,6 +651,33 @@ $R$为外接圆半径，$r$为内切圆半径
 	\item 体积
 		$$V=\frac{2}{3}\pi r^2h$$
 \end{enumerate}
+
+\subsection{立体几何公式}
+
+\subsubsection{球面三角公式}
+
+设$a, b, c$是边长，$A, B, C$是所对的二面角，
+有余弦定理$$cos a = cos b \cdot cos c + sin b \cdot sin c \cdot cos A$$
+正弦定理$$\frac{sin A}{sin a} = \frac{sin B}{sin b} = \frac{sin C}{sin c}$$
+三角形面积是$A + B + C - \pi$
+
+\subsubsection{四面体体积公式}
+
+$U, V, W, u, v, w$是四面体的$6$条棱，$U, V, W$构成三角形，$(U, u), (V, v), (W, w)$互为对棱，
+则$$V = \frac{\sqrt{(s - 2a)(s - 2b)(s - 2c)(s - 2d)}}{192 uvw}$$
+其中$$\left\{\begin{array}{lll}
+        a & = & \sqrt{xYZ}, \\
+        b & = & \sqrt{yZX}, \\
+        c & = & \sqrt{zXY}, \\
+        d & = & \sqrt{xyz}, \\
+        s & = & a + b + c + d, \\ 
+        X & = & (w - U + v)(U + v + w), \\
+        x & = & (U - v + w)(v - w + U), \\
+        Y & = & (u - V + w)(V + w + u), \\
+        y & = & (V - w + u)(w - u + V), \\
+        Z & = & (v - W + u)(W + u + v), \\
+        z & = & (W - u + v)(u - v + W)
+    \end{array}\right.$$
 
 %\subsection{常用数表}
 
