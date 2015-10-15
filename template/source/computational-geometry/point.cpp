@@ -1,4 +1,4 @@
-__inline int sgn(const double &x, const double &eps = 1e-8) {
+int sgn(const double &x, const double &eps = 1e-8) {
     return (x < -eps) ? -1 : (x > eps);
 }
 
@@ -23,10 +23,6 @@ public:
     }
 
     friend Point operator * (const Point &a, const double &k) {
-        return Point(a.x * k, a.y * k);
-    }
-
-    friend Point operator * (const double &k, const Point &a) {
         return Point(a.x * k, a.y * k);
     }
 
@@ -58,12 +54,8 @@ public:
         return a.x * b.x + a.y * b.y;
     }
 
-    friend double len(const Point &a) {
-        return a.len();
-    }
-
-    friend double dist(const Point &a, const Point &b) {
-        return (a - b).len();
+    friend double dot(const Point &a, const Point &b, const Point &c) {
+        return dot(b - a, c - a);
     }
 
     friend Point intersect(const Point &a, const Point &b, const Point &c, const Point &d) {
